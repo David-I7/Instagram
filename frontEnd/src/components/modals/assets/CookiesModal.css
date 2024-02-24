@@ -1,0 +1,32 @@
+.cookies-modal-container {
+  max-width: 34rem;
+  max-height: 30rem;
+  line-height: 18px;
+}
+
+.meatball-menu {
+  top: 0rem;
+  right: 0.75rem;
+}
+
+.p-after::after {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.Accordion-heading:hover {
+  cursor: pointer;
+}
+
+.Accordion-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
