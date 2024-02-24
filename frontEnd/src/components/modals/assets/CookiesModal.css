@@ -2,7 +2,7 @@
   max-width: 34rem;
   max-height: 30rem;
   line-height: 18px;
-  min-width: 24rem;
+  min-width: 22rem;
 }
 
 .meatball-menu {
@@ -14,7 +14,8 @@
   content: "";
   display: block;
   width: 100%;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid rgb(196, 196, 196);
 }
 
@@ -32,6 +33,30 @@
   font-weight: 500;
 }
 
+.Accordion-item {
+  padding: 0.325rem 0;
+}
+
 .rotate-chevron-icon {
   transform: rotate(180deg);
+}
+
+.about-cookies-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 0.5rem;
+  row-gap: 1rem;
+}
+
+@media (max-width: 550px) {
+  .about-cookies-card {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    justify-items: center;
+  }
+}
+
+@media (max-width: 575px) {
+  .cookies-underlay {
+    padding: 0 1rem;
+  }
 }

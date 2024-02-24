@@ -3,7 +3,7 @@ import "./assets/CookiesModal.css";
 
 const CookiesModal = () => {
   return (
-    <div className="flex justify-center items-center fixed bg-gray-600 top-0 left-0 right-0 bottom-0">
+    <div className="cookies-underlay flex justify-center items-center fixed bg-gray-600 top-0 left-0 right-0 bottom-0">
       <div className="flex flex-col bg-white cookies-modal-container pt-6 pb-2 rounded-lg divide-stone-300 divide-y-2">
         <article className="overflow-y-auto flex-grow px-6 cookies-modal-content pb-6 relative ">
           <svg
@@ -54,12 +54,12 @@ const CookiesModal = () => {
             any time in our Cookies Policy.
           </p>
           <section>
-            <h3 className="font-bold py-3">About cookies</h3>
-            <div className="grid grid-cols-2 gap-6">
-              <section className="flex border-solid border border-black rounded-xl h-44 w-56">
+            <h3 className="font-bold pb-6">About cookies</h3>
+            <div className="about-cookies-card">
+              <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56">
                 <svg
-                  width="32px"
-                  height="32px"
+                  width="24px"
+                  height="24px"
                   viewBox="0 0 24 24"
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -97,15 +97,15 @@ const CookiesModal = () => {
                     </g>{" "}
                   </g>
                 </svg>
-                <h4>What are cookies?</h4>
-                <button className="bg-slate-200 rounded-md w-full h-8 font-medium">
+                <h4 className="font-medium text-sm">What are cookies?</h4>
+                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm md:text-wrap">
                   Learn more
                 </button>
               </section>
-              <section className="flex border-solid border border-black rounded-xl h-44 w-56">
+              <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56">
                 <svg
-                  width="32px"
-                  height="32px"
+                  width="24px"
+                  height="24px"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -124,15 +124,15 @@ const CookiesModal = () => {
                     ></path>{" "}
                   </g>
                 </svg>
-                <h4>Why do we use cookies?</h4>
-                <button className="bg-slate-200 rounded-md w-full h-8 font-medium">
+                <h4 className="font-medium text-sm">Why do we use cookies?</h4>
+                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm">
                   Learn more
                 </button>
               </section>
-              <section className="flex border-solid border border-black rounded-xl h-44 w-56">
+              <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56">
                 <svg
-                  width="32px"
-                  height="32px"
+                  width="24px"
+                  height="24px"
                   viewBox="0 0 24 24"
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -182,15 +182,15 @@ const CookiesModal = () => {
                     </g>{" "}
                   </g>
                 </svg>
-                <h4>What are Meta Products?</h4>
-                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium">
+                <h4 className=" fontmedium text-sm">What are Meta Products?</h4>
+                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm">
                   Learn more
                 </button>
               </section>
-              <section className="flex flex-col gap-6 items-center pt-4 border-solid border border-black rounded-xl h-44 w-56">
+              <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56 ">
                 <svg
-                  width="32px"
-                  height="32px"
+                  width="24px"
+                  height="24px"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -211,16 +211,16 @@ const CookiesModal = () => {
                     ></path>
                   </g>
                 </svg>
-                <h4>Your cookie choices</h4>
-                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium">
+                <h4 className="font-medium text-sm">Your cookie choices</h4>
+                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm">
                   Learn more
                 </button>
               </section>
             </div>
           </section>
-          <section>
+          <section className="pt-6">
             <h3 className="font-bold">Cookies from other companies</h3>
-            <p className="text-sm pb-3">
+            <p className="text-sm py-3">
               We use cookies from other companies in order to show you ads off
               of our Products, and provide features like maps, payment services
               and video.
@@ -231,10 +231,10 @@ const CookiesModal = () => {
                   header: "How we use these Cookies",
                   content: (
                     <>
-                      <p className="text-sm pb-3">
+                      <p className="text-sm">
                         We use cookies from other companies on our Products:
                       </p>
-                      <ul>
+                      <ul className="px-4 py-3">
                         <li className="text-sm">
                           To show you ads about our Products and features on
                           other companies' apps and websites.
@@ -252,7 +252,7 @@ const CookiesModal = () => {
                   header: "If you allow these cookies",
                   content: (
                     <>
-                      <ul>
+                      <ul className="px-4 py-3">
                         <li className="text-sm">
                           Features you use on Meta Products will not be
                           affected.
@@ -273,7 +273,7 @@ const CookiesModal = () => {
                   header: "If you don't allow these cookies",
                   content: (
                     <>
-                      <ul>
+                      <ul className="px-4 pb-4 pt-1">
                         <li className="text-sm">
                           Some features on our products may not work.
                         </li>
@@ -290,8 +290,8 @@ const CookiesModal = () => {
               title="Chevron icon to see cookie consent section"
             />
           </section>
-          <section>
-            <h3 className="font-bold">
+          <section className="pt-4">
+            <h3 className="font-bold pb-2">
               Other ways you can control your information
             </h3>
             <Accordion
@@ -300,17 +300,17 @@ const CookiesModal = () => {
                   header: "Manage your ad experience in Accounts center",
                   content: (
                     <>
-                      <p className="text-sm pb-3">
+                      <p className="text-sm pb-3 pt-2">
                         You can manage your ad experience by visiting the
                         following settings.
                       </p>
-                      <h4>Ad preferences</h4>
+                      <h4 className="font-bold pb-3">Ad preferences</h4>
                       <p className=" text-sm">
                         In Ad preferences, you can choose whether we show you
                         ads and make choices about the information used to show
                         you ads.
                       </p>
-                      <h4>Ad settings</h4>
+                      <h4 className="font-bold py-3">Ad settings</h4>
                       <p className=" text-sm">
                         If we show you ads, we use data that advertisers and
                         other partners provide us with about your activity off
@@ -325,19 +325,31 @@ const CookiesModal = () => {
                   header: "More information about online advertising",
                   content: (
                     <>
-                      <p className=" text-sm">
+                      <p className="text-sm py-2">
                         Instagram adheres to the Self-Regulatory Principles for
                         Online Behavioral Advertising and participates in the
                         opt-out programs established by the{" "}
-                        <a target="_blank" href="www.aboutads.info">
+                        <a
+                          className="text-blue-800"
+                          target="_blank"
+                          href="www.aboutads.info"
+                        >
                           Digital Advertising Alliance
                         </a>
                         , the{" "}
-                        <a target="_blank" href="https://youradchoices.ca">
+                        <a
+                          className="text-blue-800"
+                          target="_blank"
+                          href="https://youradchoices.ca"
+                        >
                           Digital Advertising Alliance of Canada
                         </a>{" "}
                         and the{" "}
-                        <a target="_blank" href="https://youronlinechoices.eu">
+                        <a
+                          className="text-blue-800"
+                          target="_blank"
+                          href="https://youronlinechoices.eu"
+                        >
                           European Digital Advertising Alliance
                         </a>
                         . You can opt out from all participating companies
@@ -350,7 +362,7 @@ const CookiesModal = () => {
                   header: "Controlling cookies with browser settings",
                   content: (
                     <>
-                      <p className=" text-sm">
+                      <p className="text-sm pt-2 pb-4">
                         Your browser or device may offer settings that allow you
                         to choose whether browser cookies are set and to delete
                         them. These controls vary by browser, and manufacturers
@@ -363,7 +375,7 @@ const CookiesModal = () => {
                         controls are distinct from the controls that Instagram
                         offers.
                       </p>
-                      <ul>
+                      <ul className="pl-6 text-blue-800">
                         <li className="text-sm">
                           <a
                             href="https://support.google.com/chrome/answer/95647"
@@ -427,10 +439,10 @@ const CookiesModal = () => {
             />
           </section>
         </article>
-        <div className="flex justify-center items-center h-20 allow-cookies-container">
-          <button className="text-blue-500">Allow All Cookies</button>
+        <div className="flex justify-center items-center min-h-10 allow-cookies-container">
+          <button className="text-blue-400 font-bold">Allow All Cookies</button>
         </div>
-        <div className="flex justify-center items-center h-20 decline-cookies-container">
+        <div className="flex justify-center items-center min-h-8 decline-cookies-container">
           <button>Decline Optional Cookies</button>
         </div>
       </div>
