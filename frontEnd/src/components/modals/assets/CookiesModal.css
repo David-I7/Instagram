@@ -2,6 +2,7 @@
   max-width: 34rem;
   max-height: 30rem;
   line-height: 18px;
+  min-width: 24rem;
 }
 
 .meatball-menu {
@@ -27,6 +28,10 @@
   align-items: center;
 }
 
-.rotate {
+.Accordion-header {
+  font-weight: 500;
+}
+
+.rotate-chevron-icon {
   transform: rotate(180deg);
 }
