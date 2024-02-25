@@ -1,7 +1,7 @@
-import React from "react";
+import SelectLanguage from "../components/common/SelectLanguage";
 
 const Login = () => {
-  return <div>Login</div>;
+  return <SelectLanguage />;
 };
 
 export default Login;

@@ -1,9 +1,9 @@
-import CookiesModal from "./components/modals/CookiesModal";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <>
-      <CookiesModal />
+      <Login />
     </>
   );
 }
