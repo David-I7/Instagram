@@ -18,7 +18,7 @@ type AccordionProps = {
 
 const AccordionItem = ({ header, content, title }: ItemProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const rotate = isOpen ? "rotate" : "";
+  const rotateIcon = isOpen ? "rotate-chevron-icon" : "";
 
   return (
     <>
@@ -33,7 +33,7 @@ const AccordionItem = ({ header, content, title }: ItemProps) => {
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={`chevron-icon ${rotate}`}
+            className={`${rotateIcon}`}
           >
             <title>{title ?? null}</title>
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
