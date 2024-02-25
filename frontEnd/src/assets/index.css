@@ -584,6 +584,10 @@ video {
   height: 2rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .min-h-10 {
   min-height: 2.5rem;
 }
@@ -773,6 +777,11 @@ video {
 .text-blue-800 {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .filter {
