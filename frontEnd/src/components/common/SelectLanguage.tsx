@@ -1,28 +1,19 @@
-import { useRef } from "react";
-
 const SelectLanguage = () => {
-  const selectRef = useRef<HTMLSelectElement>(null);
   return (
     <>
-      <button
-        onClick={() => {
-          if (selectRef.current) {
-            selectRef.current.focus();
-            selectRef.current.selectedIndex = 1;
-            console.log(selectRef.current.selectedIndex);
-          }
-        }}
+      <select
+        className="hover:cursor-pointer text-center"
+        aria-label="Switch Display Language"
       >
-        click me
-      </button>
-      <select ref={selectRef} aria-label="Switch Display Language">
         <option value="af">Afrikaans</option>
         <option value="ar">العربية</option>
         <option value="cs">Čeština</option>
         <option value="da">Dansk</option>
         <option value="de">Deutsch</option>
         <option value="el">Ελληνικά</option>
-        <option value="en">English</option>
+        <option selected value="en">
+          English
+        </option>
         <option value="en-gb">English (UK)</option>
         <option value="es">Español (España)</option>
         <option value="es-la">Español</option>
@@ -70,26 +61,6 @@ const SelectLanguage = () => {
         <option value="sr">Српски</option>
         <option value="uk">Українська</option>
       </select>
-      <div className="flex flex-col w-8 border border-solid border-black">
-        <option className=" border-b border-b-black border-b-solid" value={1}>
-          1
-        </option>
-        <option className=" border-b border-b-black border-b-solid" value={2}>
-          2
-        </option>
-        <option className=" border-b border-b-black border-b-solid" value={3}>
-          3
-        </option>
-        <option className=" border-b border-b-black border-b-solid" value={4}>
-          4
-        </option>
-        <option className=" border-b border-b-black border-b-solid" value={5}>
-          5
-        </option>
-        <option className=" border-b border-b-black border-b-solid" value={6}>
-          6
-        </option>
-      </div>
     </>
   );
 };
