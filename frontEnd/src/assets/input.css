@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  min-height: 100vh;
+}
+
 button {
   cursor: pointer;
 }
@@ -16,4 +20,10 @@ ul {
 
 p {
   line-height: 1.5;
+}
+
+/* UTILITY CLASSES */
+
+.aspect-ratio-2by3 {
+  aspect-ratio: 2/3;
 }

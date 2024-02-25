@@ -3,33 +3,38 @@ import "./assets/CookiesModal.css";
 
 const CookiesModal = () => {
   return (
-    <div className="cookies-underlay flex justify-center items-center fixed bg-gray-600 top-0 left-0 right-0 bottom-0">
+    <div
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+      className="cookies-underlay flex justify-center items-center fixed top-0 left-0 right-0 bottom-0"
+    >
       <div className="flex flex-col bg-white cookies-modal-container pt-6 pb-2 rounded-lg divide-stone-300 divide-y-2">
-        <article className="overflow-y-auto flex-grow px-6 cookies-modal-content pb-6 relative ">
-          <svg
-            fill="#333"
-            height="20px"
-            width="20px"
-            id="Layer_1"
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            className="hover:cursor-pointer absolute meatball-menu"
-          >
-            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              {" "}
-              <path d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"></path>{" "}
-            </g>
-          </svg>
-          <h2 className="font-bold text-2xl text-center pb-2 pt-6">
-            Allow the use of cookies from Instagram on this browser?
-          </h2>
+        <article className="overflow-y-auto flex-grow px-6 cookies-modal-content pb-6">
+          <header className="relative">
+            <svg
+              fill="#333"
+              height="20px"
+              width="20px"
+              id="Layer_1"
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              className="hover:cursor-pointer absolute meatball-menu"
+            >
+              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"></path>{" "}
+              </g>
+            </svg>
+            <h2 className="font-bold text-2xl text-center pb-2 pt-6">
+              Allow the use of cookies from Instagram on this browser?
+            </h2>
+          </header>
           <p className="text-sm pb-3">
             We use cookies and similar technologies to help provide and improve
             content on Meta Products. We also use them to provide a safer
