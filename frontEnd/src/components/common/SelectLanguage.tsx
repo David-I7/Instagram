@@ -2,6 +2,7 @@ const SelectLanguage = () => {
   return (
     <>
       <select
+        defaultValue={"en"}
         className="hover:cursor-pointer text-center"
         aria-label="Switch Display Language"
       >
@@ -11,9 +12,7 @@ const SelectLanguage = () => {
         <option value="da">Dansk</option>
         <option value="de">Deutsch</option>
         <option value="el">Ελληνικά</option>
-        <option selected value="en">
-          English
-        </option>
+        <option value="en">English</option>
         <option value="en-gb">English (UK)</option>
         <option value="es">Español (España)</option>
         <option value="es-la">Español</option>

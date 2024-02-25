@@ -3,7 +3,10 @@ import "./assets/CookiesModal.css";
 
 const CookiesModal = () => {
   return (
-    <div className="cookies-underlay flex justify-center items-center fixed bg-gray-600 top-0 left-0 right-0 bottom-0">
+    <div
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+      className="cookies-underlay flex justify-center items-center fixed top-0 left-0 right-0 bottom-0"
+    >
       <div className="flex flex-col bg-white cookies-modal-container pt-6 pb-2 rounded-lg divide-stone-300 divide-y-2">
         <article className="overflow-y-auto flex-grow px-6 cookies-modal-content pb-6">
           <header className="relative">

@@ -4,13 +4,13 @@ import "./Login.css";
 const Login = () => {
   return (
     <>
-      <main className="flex flex-col items-center gap-y-4 my-10 h-5/6">
-        <section className="flex flex-col justify-center items-center border border-slate-300 border-solid aspect-ratio-2by3 w-4/6 max-w-sm p-8">
-          <h1 className="text-center text-5xl mb-10">Instagram</h1>
+      <main className="Login h-5/6">
+        <section className="Login-container flex flex-col justify-center items-centeraspect-ratio-2by3 w-4/6 max-w-sm">
+          <h1 className="text-center text-4xl mb-10">Instagram</h1>
           <form className="flex flex-col w-full justify-center items-center mb-6">
             <input
               className="p-2 text-xs w-full border border-slate-300 bg-gray-100 border-solid placeholder:text-gray-600 mb-2"
-              placeholder="Phone number, username or email address"
+              placeholder="Phone number, username or email"
               type="text"
               name="username"
             />
@@ -77,7 +77,7 @@ const Login = () => {
             Forgot password?
           </a>
         </section>
-        <section className="border border-slate-300 border-solid px-4 py-2 w-4/6 max-w-sm text-center">
+        <section className="signup-container w-4/6 max-w-sm text-center">
           <p>
             Don't have an account?{" "}
             <a className="text-blue-400" href="/">
