@@ -1,10 +1,12 @@
+import SelectLanguage from "../common/SelectLanguage";
 import Accordion from "../common/Accordion";
 import "./assets/CookiesModal.css";
+import LearnMoreModal from "./LearnMoreModal";
 
 const CookiesModal = () => {
   return (
     <div
-      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.65)" }}
       className="cookies-underlay flex justify-center items-center fixed top-0 left-0 right-0 bottom-0"
     >
       <div className="flex flex-col bg-white cookies-modal-container pt-6 pb-2 rounded-lg divide-stone-300 divide-y-2">
@@ -31,6 +33,7 @@ const CookiesModal = () => {
                 <path d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"></path>{" "}
               </g>
             </svg>
+            <SelectLanguage />
             <h2 className="font-bold text-2xl text-center pb-2 pt-6">
               Allow the use of cookies from Instagram on this browser?
             </h2>
@@ -58,7 +61,7 @@ const CookiesModal = () => {
             cookies and how we use them, and review or change your choices at
             any time in our Cookies Policy.
           </p>
-          <section>
+          <section className="p-after">
             <h3 className="font-bold pb-6">About cookies</h3>
             <div className="about-cookies-card">
               <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56">
@@ -103,9 +106,30 @@ const CookiesModal = () => {
                   </g>
                 </svg>
                 <h4 className="font-medium text-sm">What are cookies?</h4>
-                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm md:text-wrap">
-                  Learn more
-                </button>
+                <LearnMoreModal
+                  heading="What are cookies?"
+                  content={
+                    <>
+                      <p className="text-sm mb-2">
+                        Cookies are small pieces of text that are used to store
+                        and receive identifiers on a web browser. We use cookies
+                        and similar technologies to offer Meta Products and
+                        understand information we receive about users, like
+                        their activity on other websites and apps.
+                      </p>
+                      <p className="text-sm mb-2">
+                        If you don't have an account, we don't use cookies to
+                        personalize ads for you, and activity we receive will be
+                        used only for the security and integrity of our
+                        Products.
+                      </p>
+                      <p className="text-sm">
+                        Learn more about cookies and the similar technologies we
+                        use in our Cookies Policy.
+                      </p>
+                    </>
+                  }
+                />
               </section>
               <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56">
                 <svg
@@ -130,9 +154,46 @@ const CookiesModal = () => {
                   </g>
                 </svg>
                 <h4 className="font-medium text-sm">Why do we use cookies?</h4>
-                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm">
-                  Learn more
-                </button>
+                <LearnMoreModal
+                  heading={"Why do we use cookies?"}
+                  content={
+                    <>
+                      <p className="text-sm">
+                        Cookies help us provide, protect and improve the Meta
+                        Products, such as by personalizing content, tailoring
+                        and measuring ads, and providing a safer experience.
+                      </p>
+                      <p className="text-sm mt-4">
+                        While the cookies that we use may change from time to
+                        time as we improve and update the Meta Products, we use
+                        them for the following purposes:
+                      </p>
+                      <ul className="pl-4 mt-4 text-sm flex flex-col gap-y-2">
+                        <li>Authentication to keep users logged in</li>
+                        <li>To ensure security, site and product integrity</li>
+                        <li>
+                          To provide advertising, recommendations, insights and
+                          measurement, if we show you ads
+                        </li>
+                        <li>To provide site features and services</li>
+                        <li>To understand our Products' performance</li>
+                        <li>To enable analytics and research</li>
+                        <li>
+                          On third-party websites and apps to help companies
+                          that incorporate Meta technologies to share
+                          information with us about activity on their apps and
+                          websites.
+                        </li>
+                      </ul>
+                      <p className="text-sm mt-4">
+                        Learn more about cookies and how we use them in our {""}
+                        <a href="#" className="text-blue-900 hover:underline">
+                          Cookies Policy
+                        </a>
+                      </p>
+                    </>
+                  }
+                />
               </section>
               <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56">
                 <svg
@@ -187,10 +248,28 @@ const CookiesModal = () => {
                     </g>{" "}
                   </g>
                 </svg>
-                <h4 className=" fontmedium text-sm">What are Meta Products?</h4>
-                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm">
-                  Learn more
-                </button>
+                <h4 className=" font-medium text-sm">
+                  What are Meta Products?
+                </h4>
+                <LearnMoreModal
+                  heading="What are Meta Products?"
+                  content={
+                    <>
+                      <p className="text-sm">
+                        Meta Products include the Facebook, Instagram and
+                        Messenger apps, and any other features, apps,
+                        technologies, software or services offered by Meta under
+                        our Privacy Policy.
+                      </p>
+                      <p className="text-sm mt-4">
+                        You can learn more about {""}
+                        <a href="#" className="text-blue-900 hover:underline">
+                          Meta Products in our Privacy Policy.
+                        </a>
+                      </p>
+                    </>
+                  }
+                />
               </section>
               <section className="flex flex-col gap-6 items-center pt-8 border-solid border border-black rounded-xl h-44 w-56 ">
                 <svg
@@ -217,13 +296,37 @@ const CookiesModal = () => {
                   </g>
                 </svg>
                 <h4 className="font-medium text-sm">Your cookie choices</h4>
-                <button className="bg-slate-200 rounded-md w-10/12 h-8 font-medium text-sm">
-                  Learn more
-                </button>
+                <LearnMoreModal
+                  heading="Your cookie choices"
+                  content={
+                    <>
+                      <p className="text-sm">
+                        You have control over the optional cookies we use:
+                      </p>
+                      <ul className="pl-4 text-sm">
+                        <li className="mt-4">
+                          Our cookies on other apps and websites owned by
+                          companies that use Meta technologies, such as the Like
+                          button and Meta Pixel, can be used, including to
+                          personalize your ads, if we show you ads.
+                        </li>
+                        <li className="mt-4">
+                          We use cookies from other companies to show you ads
+                          off of Meta Products, and to provide features like
+                          maps and video on Meta Products.
+                        </li>
+                      </ul>
+                      <p className="text-sm mt-4">
+                        You can review or change your choices at any time in
+                        your Cookies settings.
+                      </p>
+                    </>
+                  }
+                />
               </section>
             </div>
           </section>
-          <section className="pt-6">
+          <section className="pt-2 p-after">
             <h3 className="font-bold">Cookies from other companies</h3>
             <p className="text-sm py-3">
               We use cookies from other companies in order to show you ads off
@@ -295,7 +398,7 @@ const CookiesModal = () => {
               title="Chevron icon to see cookie consent section"
             />
           </section>
-          <section className="pt-4">
+          <section className="pt-2">
             <h3 className="font-bold pb-2">
               Other ways you can control your information
             </h3>
