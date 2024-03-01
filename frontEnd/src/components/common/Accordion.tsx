@@ -63,10 +63,10 @@ const AccordionItem = ({ header, content, title }: ItemProps) => {
 function Accordion({ items, title }: AccordionProps) {
   return (
     <section className="Accordion">
-      {items.map((item, index) => (
+      {items.map((item) => (
         <AccordionItem
           title={title}
-          key={index}
+          key={Math.random().toString(36).substring(2, 11)}
           header={item.header}
           content={item.content}
         />

@@ -20,7 +20,7 @@ const LearnMoreModal = ({ heading, content }: LearnMoreModalProps) => {
       </button>
       {showingModal && (
         <div
-          className="LearnMore-underlay flex justify-center items-center absolute"
+          className="LearnMore-underlay flex justify-center items-center absolute z-30"
           style={{
             backgroundColor: "rgba(0,0,0,0.75)",
             top: 0,
