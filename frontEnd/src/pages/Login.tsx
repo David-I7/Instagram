@@ -8,11 +8,6 @@ const Login = () => {
   const [pwdIsShowing, setPwdIsShowing] = useState<boolean>(false);
   const pwdRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // modify input
-    setUsernameInput(e.target.value);
-  };
-
   const handleShowPasswordClick = () => {
     if (pwdRef.current!.type === "password") {
       pwdRef.current!.type = "text";
