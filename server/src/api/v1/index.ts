@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(
   express.static(
-    path.join(__dirname, "..", "..", "..", "..", "..", "frontEnd", "dist")
+    path.join(__dirname, "..", "..", "..", "..", "..", "client", "dist")
   )
 );
 
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
       "..",
       "..",
       "..",
-      "frontEnd",
+      "client",
       "dist",
       "index.html"
     )
