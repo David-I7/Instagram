@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 import mongoose from "mongoose";
 import connectDB from "./config/connectDB";
 import { clientIndex, clientAssets } from "./config/pathConstants";
@@ -8,10 +7,16 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT! || 3000;
 
-app.use(express.static(path.join(clientAssets)));
+app.use(express.static(clientAssets));
+
+//routes
+import registerRouter from "./routes/register";
+app.use("/register", registerRouter);
+import authRouter from "./routes/register";
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(clientIndex));
+  res.sendFile(clientIndex);
 });
 
 mongoose.connection.once("open", () => {

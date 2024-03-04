@@ -7,12 +7,14 @@ export const clientAssets = path.join(
   "..",
   "..",
   "..",
+  "..",
   "client",
   "dist"
 );
 
 export const clientIndex = path.join(
   __dirname,
+  "..",
   "..",
   "..",
   "..",
