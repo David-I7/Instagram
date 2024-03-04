@@ -1,29 +1,25 @@
 import express from "express";
+import mongoose from "mongoose";
+import connectDB from "./config/connectDB";
+import { clientIndex, clientAssets } from "./config/pathConstants";
+
+connectDB();
 const app = express();
-import path from "path";
+const PORT = process.env.PORT! || 3000;
 
-const PORT = process.env.PORT || 3000;
+app.use(express.static(clientAssets));
 
-app.use(
-  express.static(
-    path.join(__dirname, "..", "..", "..", "..", "..", "frontEnd", "dist")
-  )
-);
+//routes
+import registerRouter from "./routes/register";
+app.use("/register", registerRouter);
+import authRouter from "./routes/register";
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
-  res.sendFile(
-    path.join(
-      __dirname,
-      "..",
-      "..",
-      "..",
-      "..",
-      "..",
-      "frontEnd",
-      "dist",
-      "index.html"
-    )
-  );
+  res.sendFile(clientIndex);
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+mongoose.connection.once("open", () => {
+  console.log("connected to DB");
+  app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+});
