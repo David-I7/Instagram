@@ -8,11 +8,13 @@ const app = express();
 const PORT = process.env.PORT! || 3000;
 
 app.use(express.static(clientAssets));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //routes
 import registerRouter from "./routes/register";
 app.use("/register", registerRouter);
-import authRouter from "./routes/register";
+import authRouter from "./routes/auth";
 app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {

@@ -11,10 +11,12 @@ const pathConstants_1 = require("./config/pathConstants");
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.use(express_1.default.static(pathConstants_1.clientAssets));
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use(express_1.default.json());
 const register_1 = __importDefault(require("./routes/register"));
 app.use("/register", register_1.default);
-const register_2 = __importDefault(require("./routes/register"));
-app.use("/auth", register_2.default);
+const auth_1 = __importDefault(require("./routes/auth"));
+app.use("/auth", auth_1.default);
 app.get("/", (req, res) => {
     res.sendFile(pathConstants_1.clientIndex);
 });
