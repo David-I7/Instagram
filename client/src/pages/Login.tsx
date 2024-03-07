@@ -22,7 +22,11 @@ const Login = () => {
       <main className="Login h-5/6">
         <section className="Login-container flex flex-col justify-center items-centeraspect-ratio-2by3 w-4/6 max-w-sm">
           <h1 className="text-center text-4xl mb-10">Instagram</h1>
-          <form className="flex flex-col w-full justify-center items-center mb-6">
+          <form
+            className="flex flex-col w-full justify-center items-center mb-6"
+            action="http://localhost:3000/auth"
+            method="post"
+          >
             <div
               style={
                 usernameInput.length > 0
@@ -39,6 +43,7 @@ const Login = () => {
                 }
                 className="Login-input placeholder:text-gray-500"
                 type="text"
+                autoComplete="on"
                 name="username"
                 value={usernameInput}
                 placeholder="Phone number, username or email"
@@ -64,6 +69,7 @@ const Login = () => {
                   }
                   className="Login-input placeholder:text-gray-500"
                   placeholder="Password"
+                  autoComplete="off"
                   type="password"
                   name="pwd"
                   ref={pwdRef}
