@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap");
 
-h1 {
+.Login-container h1 {
   font-family: "Leckerli One", cursive;
   font-weight: 400;
   color: black;
@@ -81,10 +81,10 @@ h1 {
 
 .Login-input-container span {
   font-size: 0.625rem;
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.5rem;
   width: 100%;
   color: rgb(107 114 128);
-  height: 0.5rem;
+  height: 0.325rem;
   animation: Login-animate-font 0.1s ease-in-out forwards;
 }
 
