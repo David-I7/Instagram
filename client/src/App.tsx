@@ -1,7 +1,8 @@
-import Login from "./pages/Login";
-import CookiesModal from "./components/modals/CookiesModal";
+import Auth from "./features/authentication/Index";
+import Cookies from "./features/cookies/Index";
 import { Route, Routes } from "react-router-dom";
 import TestComponent from "./components/common/TestComponent";
+import EmailSignup from "./features/authentication/pages/EmailSignup";
 
 function App() {
   return (
@@ -10,14 +11,15 @@ function App() {
         <Route path="/">
           <Route index element={<TestComponent />} />
           <Route
-            path="register"
+            path="login"
             element={
               <>
                 {" "}
-                <CookiesModal /> <Login />{" "}
+                <Cookies /> <Auth />{" "}
               </>
             }
           />
+          <Route path="/emailsignup" element={<EmailSignup />} />
         </Route>
       </Routes>
     </>

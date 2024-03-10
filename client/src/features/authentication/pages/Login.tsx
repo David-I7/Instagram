@@ -1,8 +1,7 @@
-import { ChangeEvent, useRef, useState } from "react";
-import Footer from "../components/common/Footer";
-import DynamicPasswordInput from "../components/common/DynamicPasswordInput";
-import DynamicTextInput from "../components/common/DynamicTextInput";
-import "./Login.css";
+import Footer from "../../../components/common/Footer";
+import DynamicPasswordInput from "../components/DynamicPasswordInput";
+import DynamicTextInput from "../components/DynamicTextInput";
+import "../assets/Login.css";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -81,9 +80,9 @@ const Login = () => {
         <section className="signup-container w-4/6 max-w-sm text-center p-4">
           <p>
             Don't have an account?{" "}
-            <a className="text-blue-400" href="/">
+            <Link to="/emailsignup" className="text-blue-400">
               Sign up
-            </a>
+            </Link>
           </p>
         </section>
         <section className="w-4/6 max-w-sm">

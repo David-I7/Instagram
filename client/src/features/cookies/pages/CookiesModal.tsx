@@ -1,14 +1,16 @@
-import SelectLanguage from "../common/SelectLanguage";
-import Accordion from "../common/Accordion";
-import "./assets/CookiesModal.css";
-import LearnMoreModal from "./LearnMoreModal";
+import SelectLanguage from "../../../components/common/SelectLanguage";
+import Accordion from "../../../components/common/Accordion";
+import "../assets/CookiesModal.css";
+import LearnMoreModal from "../components/LearnMoreModal";
 import { useState } from "react";
+import useLocalStorage from "../../../hooks/useLocalStorage";
 
 const CookiesModal = () => {
   const [showingModal, setShowingModal] = useState<boolean>(true);
+  const [cookiesOptions, setCookiesOptions] = useLocalStorage("cookies", "");
   return (
     <>
-      {showingModal && (
+      {showingModal && !cookiesOptions && (
         <div
           style={{ backgroundColor: "rgba(0, 0, 0, 0.65)" }}
           className="cookies-underlay flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 z-20"
@@ -567,7 +569,10 @@ const CookiesModal = () => {
               </section>
             </article>
             <div
-              onClick={() => setShowingModal(false)}
+              onClick={() => {
+                setShowingModal(false);
+                setCookiesOptions("all");
+              }}
               className="flex justify-center items-center min-h-10 allow-cookies-container"
             >
               <button className="text-blue-400 font-bold">
@@ -575,7 +580,10 @@ const CookiesModal = () => {
               </button>
             </div>
             <div
-              onClick={() => setShowingModal(false)}
+              onClick={() => {
+                setShowingModal(false);
+                setCookiesOptions("required");
+              }}
               className="flex justify-center items-center min-h-8 decline-cookies-container"
             >
               <button>Decline Optional Cookies</button>
