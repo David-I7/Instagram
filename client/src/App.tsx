@@ -3,6 +3,7 @@ import Cookies from "./features/cookies/Index";
 import { Route, Routes } from "react-router-dom";
 import TestComponent from "./components/common/TestComponent";
 import EmailSignup from "./features/authentication/pages/EmailSignup";
+import ResetPassword from "./features/authentication/pages/ResetPassword";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
               </>
             }
           />
-          <Route path="/emailsignup" element={<EmailSignup />} />
+          <Route path="emailsignup" element={<EmailSignup />} />
+          <Route path="resetPassword" element={<ResetPassword />} />
         </Route>
       </Routes>
     </>

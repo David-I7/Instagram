@@ -5,6 +5,7 @@ const SelectLanguage = () => {
         defaultValue={"en"}
         className="hover:cursor-pointer text-center"
         aria-label="Switch Display Language"
+        name="language"
       >
         <option value="af">Afrikaans</option>
         <option value="ar">العربية</option>

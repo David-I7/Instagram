@@ -1,26 +1,29 @@
 import { ChangeEvent, useState } from "react";
 
-const DynamicTextInput = () => {
-  const [usernameInput, setUsernameInput] = useState<string>("");
+interface DynamicTextInputProps {
+  placeholder: string;
+  name: string;
+}
+
+const DynamicTextInput = ({ placeholder, name }: DynamicTextInputProps) => {
+  const [textInput, setTextInput] = useState<string>("");
   return (
     <div
-      style={
-        usernameInput.length > 0 ? { padding: "0.25rem 0.5rem" } : undefined
-      }
+      style={textInput.length > 0 ? { padding: "0.25rem 0.5rem" } : undefined}
       className="Login-input-container focus-within:outline focus-within:outline-1 focus-within:outline-gray-400"
     >
-      {usernameInput && <span>Phone number, username or email</span>}
+      {textInput && <span>{placeholder}</span>}
 
       <input
-        style={usernameInput.length > 0 ? { height: "1rem" } : undefined}
+        style={textInput.length > 0 ? { height: "1rem" } : undefined}
         className="Login-input placeholder:text-gray-500"
         type="text"
         autoComplete="on"
-        name="username"
-        value={usernameInput}
-        placeholder="Phone number, username or email"
+        name={name}
+        value={textInput}
+        placeholder={placeholder}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setUsernameInput(e.target.value)
+          setTextInput(e.target.value)
         }
       />
     </div>

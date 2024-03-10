@@ -15,7 +15,10 @@ const Login = () => {
             action="http://localhost:3000/auth"
             method="post"
           >
-            <DynamicTextInput />
+            <DynamicTextInput
+              name="username"
+              placeholder="Phone number, username or email"
+            />
             <DynamicPasswordInput />
             <button className="bg-blue-400 rounded-lg text-white w-full p-1">
               Log in

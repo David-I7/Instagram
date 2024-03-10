@@ -1,13 +1,16 @@
 import express from "express";
-import User from "../interfaces/User";
+import {UserRegister} from "../interfaces/User";
+import {validateRegisterInput} from '../validation/authentication/validateCredentials'
 
 const registerRouter = express.Router();
 
 registerRouter.route("/").post((req, res) => {
-  const { displayUsername, secondaryUsername, pwd }: User = req.body;
-  if (!displayUsername || !secondaryUsername || !pwd) res.send(400); // fullName
-
+  const { displayUsername, secondaryUsername, pwd, fullName }: UserRegister = req.body;
   //validation
+  const results = validateRegisterInput({pwd, fullName, secondaryUsername, displayUsername})
+  if (!results.secondaryUsername || !results.pwd || !results.displayUsername) res.send(400)
+  // check for duplicates
+
 });
 
 export default registerRouter;
