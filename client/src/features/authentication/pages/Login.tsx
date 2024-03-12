@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <>
       <main className="Login h-5/6">
-        <section className="Login-container flex flex-col justify-center items-centeraspect-ratio-2by3 w-4/6 max-w-sm">
+        <section className="Login-container flex flex-col justify-center items-centeraspect-ratio-2by3 w-4/6 max-w-sm rounded-sm">
           <h1 className="text-center text-4xl mb-10">Instagram</h1>
           <form
             className="flex flex-col w-full justify-center items-center mb-6"
@@ -80,7 +80,7 @@ const Login = () => {
             Forgot password?
           </Link>
         </section>
-        <section className="signup-container w-4/6 max-w-sm text-center p-4">
+        <section className="signup-container w-4/6 max-w-sm text-center p-4 rounded-sm">
           <p>
             Don't have an account?{" "}
             <Link to="/emailsignup" className="text-blue-400">

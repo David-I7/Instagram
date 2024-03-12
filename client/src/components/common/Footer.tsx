@@ -2,7 +2,7 @@ import SelectLanguage from "./SelectLanguage";
 
 const Footer = () => {
   return (
-    <footer role="contentinfo" className="text-xs text-slate-400">
+    <footer role="contentinfo" className="text-xs text-slate-400 w-4/5 mx-auto">
       <nav>
         <ul className="flex flex-wrap gap-x-4 list-none justify-center">
           <li>

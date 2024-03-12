@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../assets/EmailSignUp.css";
 import Footer from "../../../components/common/Footer";
 import DynamicPasswordInput from "../components/DynamicPasswordInput";
 import DynamicTextInput from "../components/DynamicTextInput";
@@ -6,21 +7,23 @@ import DynamicTextInput from "../components/DynamicTextInput";
 const EmailSignup = () => {
   return (
     <>
-      <main className="flex flex-col">
-        <section>
-          <h1 className="text-4xl">Instagram</h1>
-          <p>Sign up to see photos and videos from your friends.</p>
+      <main className="flex flex-col items-center pt-4 gap-4">
+        <section className="EmailSignup-container max-w-sm border rounded-sm">
+          <h1 className="text-4xl text-center">Instagram</h1>
+          <p className="text-gray-500 font-medium text-center">
+            Sign up to see photos and videos from your friends.
+          </p>
 
-          <button>
+          <button className="bg-blue-500 text-white text-sm rounded-lg px-1 pt-1 font-medium">
             <svg
-              className="inline"
-              width="24px"
-              height="24px"
+              className="inline mr-2 pb-1"
+              width="16px"
+              height="26px"
               viewBox="0 0 48 48"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              fill="#000000"
-              stroke="#000000"
+              fill="#ffffff"
+              stroke="#ffffff"
             >
               <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
               <g
@@ -42,7 +45,7 @@ const EmailSignup = () => {
                   <g
                     id="Color-"
                     transform="translate(-200.000000, -160.000000)"
-                    fill="#4460A0"
+                    fill="#ffffff"
                   >
                     {" "}
                     <path
@@ -57,7 +60,7 @@ const EmailSignup = () => {
             </svg>
             Log in with Facebook{" "}
           </button>
-          <div className="or-transition flex w-full mb-6">
+          <div className="or-transition flex w-full">
             <span className="text-slate-500 font-bold text-xs">OR</span>
           </div>
           <form>
@@ -68,15 +71,62 @@ const EmailSignup = () => {
               name="secondaryUsername"
               placeholder="Phone Number or email"
             />
-            <button>next</button>
+            <p className="text-xs mb-4 mt-4 text-center">
+              People who use our service may have uploaded your contact
+              information to Instagram.{" "}
+              <a
+                className="text-blue-900"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                href="https://www.facebook.com/help/instagram/261704639352628"
+              >
+                Learn more
+              </a>
+            </p>
+            <p className="text-xs mb-4 text-center">
+              By signing up, you agree to our{" "}
+              <a
+                className="text-blue-900"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                href="https://help.instagram.com/581066165581870/?locale=en_US"
+              >
+                Terms
+              </a>
+              . Learn how we collect, use and share your data in our{" "}
+              <a
+                className="text-blue-900"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                href="https://www.facebook.com/privacy/policy"
+              >
+                Privacy Policy
+              </a>{" "}
+              and how we use cookies and similar technology in our{" "}
+              <a
+                className="text-blue-900"
+                target="_blank"
+                referrerPolicy="no-referrer"
+                href="https://www.instagram.com/legal/cookies/"
+              >
+                Cookies Policy
+              </a>
+              .
+            </p>
+            <button className="bg-blue-400 text-white text-sm rounded-lg p-1 font-medium w-full pointer-events-none">
+              Next
+            </button>
           </form>
         </section>
-        <section>
+        <section className="border rounded-sm py-6 px-8 max-w-sm w-full text-center">
           <p>
-            Have an account? <Link to="/login">Log in</Link>
+            Have an account?{" "}
+            <Link className="text-blue-400 font-medium" to="/login">
+              Log in
+            </Link>
           </p>
         </section>
-        <section className="w-4/6 max-w-sm">
+        <section className="w-4/6 max-w-sm mb-14">
           <p className="text-center">Get the app.</p>
           <div className="flex gap-x-4 justify-center mt-4">
             <a
