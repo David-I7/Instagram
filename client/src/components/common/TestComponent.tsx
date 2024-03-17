@@ -1,8 +1,12 @@
-import { Navigate } from "react-router-dom";
+import TestNestedComponent from "./TestNestedComponent";
 
 const TestComponent = () => {
-  const loggedIn = false;
-  return <>{loggedIn ? <h1>Home</h1> : <Navigate to={"/login"} />}</>;
+  const func = () => {
+    console.log(func);
+  };
+  func();
+
+  return <TestNestedComponent func={func} />;
 };
 
 export default TestComponent;

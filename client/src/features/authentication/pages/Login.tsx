@@ -1,8 +1,7 @@
 import Footer from "../../../components/common/Footer";
-import DynamicPasswordInput from "../components/DynamicPasswordInput";
-import DynamicTextInput from "../components/DynamicTextInput";
 import "../assets/Login.css";
 import { Link } from "react-router-dom";
+import LoginForm from "../components/LoginForm";
 
 const Login = () => {
   return (
@@ -10,20 +9,7 @@ const Login = () => {
       <main className="Login h-5/6">
         <section className="Login-container flex flex-col justify-center items-centeraspect-ratio-2by3 w-4/6 max-w-sm rounded-sm">
           <h1 className="text-center text-4xl mb-10">Instagram</h1>
-          <form
-            className="flex flex-col w-full justify-center items-center mb-6"
-            action="http://localhost:3000/auth"
-            method="post"
-          >
-            <DynamicTextInput
-              name="username"
-              placeholder="Phone number, username or email"
-            />
-            <DynamicPasswordInput />
-            <button className="bg-blue-400 rounded-lg text-white w-full p-1">
-              Log in
-            </button>
-          </form>
+          <LoginForm />
           <div className="or-transition flex w-full mb-6">
             <span className="text-slate-500 font-bold text-xs">OR</span>
           </div>

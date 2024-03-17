@@ -52,11 +52,9 @@
 
 .Login-input-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   font-size: 0.75rem;
-  border: 1px solid rgb(211, 211, 211);
+  border: 1px solid #d3d3d3;
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
@@ -79,10 +77,10 @@
   animation: Login-animate-opacity 1s ease-in-out forwards;
 }
 
-.Login-input-container span {
+.authPlaceholder {
   font-size: 0.625rem;
   margin-bottom: 0.5rem;
-  width: 100%;
+  width: 15%;
   color: rgb(107 114 128);
   height: 0.325rem;
   animation: Login-animate-font 0.1s ease-in-out forwards;

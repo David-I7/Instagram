@@ -1,4 +1,4 @@
-import DynamicTextInput from "../components/DynamicTextInput";
+import ResetPasswordForm from "../components/ResetPasswordForm";
 import Footer from "../../../components/common/Footer";
 import "../assets/ResetPassword.css";
 import { Link } from "react-router-dom";
@@ -24,18 +24,7 @@ const ResetPassword = () => {
             Enter your email, phone, or username and we'll send you a link to
             get back into your account.
           </p>
-          <form className="w-4/5">
-            <DynamicTextInput
-              name="username"
-              placeholder="Email, Phone or Username"
-            />
-            <button
-              disabled
-              className="text-white bg-blue-400 w-full rounded-lg p-1 mt-3"
-            >
-              Send login link
-            </button>
-          </form>
+          <ResetPasswordForm />
           <a
             className="text-xs w-4/5 text-center mb-4"
             target="_blank"
@@ -55,7 +44,7 @@ const ResetPassword = () => {
           </Link>
           <Link
             to="/login"
-            className=" border w-full text-center font-medium bg-gray-50 p-2"
+            className="border w-full text-center font-medium bg-gray-50 p-2"
           >
             Back to login
           </Link>
