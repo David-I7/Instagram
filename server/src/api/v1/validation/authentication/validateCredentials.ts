@@ -10,14 +10,14 @@ const validatePhoneNumber = (PhoneNumber: string): boolean => {
   return regex.test(PhoneNumber);
 };
 
-const validateFullname = (fullName: string): boolean => {
+const validateFullName = (fullName: string): boolean => {
   return new RegExp(
     "^[a-zA-Z]{2,20} [a-zA-Z]{2,20}(-| )?([a-zA-Z]{2,20})?$"
   ).test(fullName);
 };
 
 const validatePwd = (pwd: string): boolean => {
-  return new RegExp(".{8,64}").test(pwd);
+  return new RegExp(/^(?=.*[a-zA-Z])(?=.*[\d]).{8,64}$/).test(pwd);
 };
 
 const validateEmail = (email: string): boolean => {
@@ -25,9 +25,19 @@ const validateEmail = (email: string): boolean => {
   return regex.test(email);
 };
 
+const validateDisplayUsername = (displayUsername: string): boolean => {
+  const regex = new RegExp(/^\w{2,16}$/);
+  return regex.test(displayUsername);
+};
+
 const validateUsername = (username: string): boolean => {
-  const regex = new RegExp("^.{2,16}$");
-  return regex.test(username);
+  if (
+    validateDisplayUsername(username) ||
+    validateEmail(username) ||
+    validatePhoneNumber(username)
+  )
+    return true;
+  return false;
 };
 
 export const validateAuthInput = (user: UserAuth): AuthResults => {
@@ -35,12 +45,7 @@ export const validateAuthInput = (user: UserAuth): AuthResults => {
     username: false,
     pwd: false,
   };
-  if (
-    validateUsername(user.username) ||
-    validateEmail(user.username) ||
-    validatePhoneNumber(user.username)
-  )
-    results.username = true;
+  if (validateUsername(user.username)) results.username = true;
   if (validatePwd(user.pwd)) results.pwd = true;
 
   return results;
@@ -53,7 +58,8 @@ export const validateRegisterInput = (user: UserRegister): RegisterResults => {
     pwd: false,
   };
 
-  if (validateUsername(user.displayUsername)) results.displayUsername = true;
+  if (validateDisplayUsername(user.displayUsername))
+    results.displayUsername = true;
   if (
     validateEmail(user.secondaryUsername) ||
     validatePhoneNumber(user.secondaryUsername)
@@ -61,7 +67,7 @@ export const validateRegisterInput = (user: UserRegister): RegisterResults => {
     results.secondaryUsername = true;
   if (validatePwd(user.pwd)) results.pwd = true;
   user.fullName
-    ? validateFullname(user.fullName)
+    ? validateFullName(user.fullName)
       ? (results.fullName = true)
       : ""
     : "";
