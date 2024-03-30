@@ -1,5 +1,7 @@
 import path from "path";
 
+//** Relative to pathConstants.js **
+
 export const clientAssets = path.join(
   __dirname,
   "..",

@@ -1,15 +1,11 @@
 import express from "express";
-import { UserAuth } from "../interfaces/User";
+import authController from "../controllers/authController";
+import errorHandler from "../middlewares/errorHandler";
+
 const authRouter = express.Router();
 
-authRouter.route("/").post((req, res) => {
-  const { username, pwd }: UserAuth = req.body;
-  // check if user is in database
-  
+authRouter.route("/").post(authController);
 
-  //
-
-  return res.sendStatus(200);
-});
+authRouter.use(errorHandler);
 
 export default authRouter;

@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import connectDB from "./config/connectDB";
 import { clientIndex, clientAssets } from "./config/pathConstants";
+// import errorHandler from "./middlewares/errorHandler";
 
 connectDB();
 const app = express();
@@ -19,6 +20,10 @@ app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(clientIndex);
+});
+
+app.all("*", (req, res) => {
+  res.status(404).send("This route does not exist");
 });
 
 mongoose.connection.once("open", () => {

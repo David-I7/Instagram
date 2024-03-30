@@ -11,15 +11,15 @@ export interface UserAuth {
 }
 
 export interface AuthResults {
-  username: boolean;
-  pwd: boolean;
+  username: string;
+  pwd: string;
 }
 
 export interface RegisterResults {
-  displayUsername: boolean;
-  fullName?: boolean;
-  secondaryUsername: boolean;
-  pwd: boolean;
+  displayUsername: string;
+  fullName?: string;
+  secondaryUsername: string;
+  pwd: string;
 }
 
 // types

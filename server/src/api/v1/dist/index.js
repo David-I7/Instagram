@@ -20,6 +20,9 @@ app.use("/auth", auth_1.default);
 app.get("/", (req, res) => {
     res.sendFile(pathConstants_1.clientIndex);
 });
+app.all("*", (req, res) => {
+    res.status(404).send("This route does not exist");
+});
 mongoose_1.default.connection.once("open", () => {
     console.log("connected to DB");
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
