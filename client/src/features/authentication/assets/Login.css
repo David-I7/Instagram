@@ -27,12 +27,15 @@
   row-gap: 1rem;
   align-items: center;
   justify-content: center;
-  margin: 1rem 0;
+  margin-top: 1rem;
+  padding-bottom: 3rem;
 }
 
 .Login-container,
 .signup-container {
   border: 1px solid rgb(203 213 225);
+  width: 22rem;
+  min-width: 18rem;
 }
 
 .signup-container {
@@ -41,6 +44,7 @@
 
 .Login-container {
   padding: 2rem;
+  aspect-ratio: 3.5/4;
 }
 
 .Login-input {
@@ -99,7 +103,14 @@
   .Login-container,
   .signup-container {
     border: none;
+  }
+
+  .signup-container {
     padding: 0;
+  }
+
+  .Login-container {
+    padding-bottom: 0;
   }
 
   .Login {

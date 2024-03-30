@@ -8,7 +8,7 @@ const EmailSignup = () => {
     <>
       <main className="EmailSignup-main flex flex-col items-center gap-4">
         <section className="EmailSignup-container max-w-sm rounded-sm">
-          <h1 className="text-4xl text-center">Instagram</h1>
+          <h1 className="text-5xl text-center">Instagram</h1>
           <p className="text-gray-500 font-medium text-center">
             Sign up to see photos and videos from your friends.
           </p>

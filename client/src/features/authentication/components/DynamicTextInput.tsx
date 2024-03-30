@@ -7,6 +7,7 @@ interface DynamicTextInputProps {
   textInput: string;
   setTextInput: React.Dispatch<React.SetStateAction<string>>;
   validInput?: boolean;
+  onBlur?: () => void;
 }
 
 const DynamicTextInput = ({
@@ -15,8 +16,8 @@ const DynamicTextInput = ({
   textInput,
   setTextInput,
   validInput,
+  onBlur,
 }: DynamicTextInputProps) => {
-  console.log(validInput, textInput.length);
   return (
     <>
       <div
@@ -37,6 +38,7 @@ const DynamicTextInput = ({
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setTextInput(e.target.value);
             }}
+            onBlur={onBlur}
           />
         </div>
         <div>

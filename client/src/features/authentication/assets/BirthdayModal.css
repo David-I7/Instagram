@@ -1,0 +1,32 @@
+.modal-underlay-light {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 10;
+}
+
+.BirthdayModal-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  place-content: center;
+}
+
+.BirthdayModal {
+  aspect-ratio: 1/0.9;
+  max-width: 25rem;
+  min-width: 15rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 1rem 2rem;
+}

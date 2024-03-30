@@ -6,8 +6,8 @@ import LoginForm from "../components/LoginForm";
 const Login = () => {
   return (
     <>
-      <main className="Login h-5/6">
-        <section className="Login-container flex flex-col justify-center items-centeraspect-ratio-2by3 w-4/6 max-w-sm rounded-sm">
+      <main className="Login">
+        <section className="Login-container flex flex-col justify-center w-4/6 max-w-sm rounded-sm">
           <h1 className="text-center text-4xl mb-10">Instagram</h1>
           <LoginForm />
           <div className="or-transition flex w-full mb-6">
@@ -60,8 +60,8 @@ const Login = () => {
           </a>
 
           <Link
-            to="/resetpassword"
-            className="text-slate-500 block text-center text-xs"
+            to="/login/resetpassword"
+            className="text-slate-500 block text-center text-xs pb-2"
           >
             Forgot password?
           </Link>

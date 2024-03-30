@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import TestRoutes from "./components/common/TestRoutes";
 import EmailSignup from "./features/authentication/pages/EmailSignup";
 import ResetPassword from "./features/authentication/pages/ResetPassword";
+import Birthday from "./features/authentication/pages/Birthday";
 import TestComponent from "./components/common/TestComponent";
 
 function App() {
@@ -13,17 +14,23 @@ function App() {
         <Route path="/">
           <Route index element={<TestRoutes />} />
           <Route path="test" element={<TestComponent />} />
-          <Route
-            path="login"
-            element={
-              <>
-                {" "}
-                <Cookies /> <Auth />{" "}
-              </>
-            }
-          />
-          <Route path="emailsignup" element={<EmailSignup />} />
-          <Route path="resetPassword" element={<ResetPassword />} />
+          <Route path="login">
+            <Route
+              index
+              element={
+                <>
+                  {" "}
+                  <Cookies /> <Auth />{" "}
+                </>
+              }
+            ></Route>
+            <Route path="resetpassword" element={<ResetPassword />} />
+          </Route>
+          <Route path="emailsignup">
+            <Route index element={<EmailSignup />} />
+            {/* <Route path="gender" element={<SelectGender />} />*/}
+            <Route path="birthday" element={<Birthday />} />
+          </Route>
         </Route>
       </Routes>
     </>

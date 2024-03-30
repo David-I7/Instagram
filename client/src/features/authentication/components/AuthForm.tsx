@@ -1,25 +1,31 @@
 import DynamicPasswordInput from "./DynamicPasswordInput";
 import DynamicSubmitButton from "./DynamicSubmitButton";
 import DynamicTextInput from "./DynamicTextInput";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { getTailwindStyles } from "../helpers/Styles";
 import useValidatePwd from "../hooks/useValidatePwd";
 import useValidateDisplayUsername from "../hooks/useValidateDisplayUsername";
 import useValidateSecondaryUsername from "../hooks/useValidateSecondaryUsername";
+import { validateFullName } from "../../../validation/authValidation";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const [pwdInput, setPwdInput] = useState<string>("");
   const validPwd = useValidatePwd(pwdInput);
   const [fullName, setFullName] = useState<string>("");
+  const [validFullName, setValidFullname] = useState<boolean>(false);
   const [displayUsername, setDisplayUsername] = useState<string>("");
   const validDisplayUsername = useValidateDisplayUsername(displayUsername);
   const [secondaryUsername, setSecondaryUsername] = useState<string>("");
   const validSecondaryUsername =
     useValidateSecondaryUsername(secondaryUsername);
+  const handleBlur = () => {
+    setValidFullname(validateFullName(fullName));
+  };
+  const navigate = useNavigate();
 
-  console.log(validDisplayUsername);
   return (
-    <form>
+    <form onSubmit={(e: FormEvent<HTMLFormElement>) => e.preventDefault()}>
       <DynamicTextInput
         name="secondaryUsername"
         placeholder="Phone Number or Email"
@@ -32,6 +38,8 @@ const AuthForm = () => {
         placeholder="Full name"
         textInput={fullName}
         setTextInput={setFullName}
+        validInput={validFullName}
+        onBlur={handleBlur}
       />
       <DynamicTextInput
         name="displayUsername"
@@ -91,10 +99,16 @@ const AuthForm = () => {
       <DynamicSubmitButton
         content={"Next"}
         tailwindStyles={getTailwindStyles(
-          displayUsername.length > 0 &&
-            secondaryUsername.length > 0 &&
-            pwdInput.length >= 8
+          validDisplayUsername &&
+            validSecondaryUsername &&
+            validPwd &&
+            (fullName.length > 0 ? validFullName : true)
         )}
+        onClick={() =>
+          navigate("/birthday", {
+            state: { displayUsername, secondaryUsername, fullName, pwdInput },
+          })
+        }
       />
     </form>
   );

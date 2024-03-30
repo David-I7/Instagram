@@ -1,8 +1,9 @@
 import { Navigate } from "react-router-dom";
+import Birthday from "../../features/authentication/pages/Birthday";
 
 const TestRoutes = () => {
-  const loggedIn = false;
-  return <>{loggedIn ? <h1>Home</h1> : <Navigate to={"/login"} />}</>;
+  const loggedIn = true;
+  return <>{loggedIn ? <Birthday /> : <Navigate to={"/login"} />}</>;
 };
 
 export default TestRoutes;

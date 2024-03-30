@@ -1,5 +1,3 @@
-import TestComponent from "./TestComponent";
-
 interface TestNestedComponentsProps {
   func(): void;
 }
