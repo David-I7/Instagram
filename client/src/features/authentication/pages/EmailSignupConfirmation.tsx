@@ -17,7 +17,7 @@ const EmailSignupConfirmation = () => {
           <p className="text-sm pt-2 pb-5 text-center">
             Enter the confirmation code we sent to{" "}
             {location.state.secondaryUsername}.{" "}
-            <button className="text-blue-400 font-medium text-sm">
+            <button type="button" className="text-blue-400 font-medium text-sm">
               Resend Code.
             </button>
           </p>

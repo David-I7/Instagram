@@ -14,7 +14,10 @@ const EmailSignup = () => {
             Sign up to see photos and videos from your friends.
           </p>
 
-          <button className="bg-blue-500 text-white text-sm rounded-lg px-1 pt-1 font-medium hover:brightness-90">
+          <button
+            type="button"
+            className="bg-blue-500 text-white text-sm rounded-lg px-1 pt-1 font-medium hover:brightness-90"
+          >
             <svg
               className="inline mr-2 pb-1"
               width="16px"

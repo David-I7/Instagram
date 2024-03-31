@@ -12,7 +12,7 @@ const DynamicSubmitButton = ({
   onClick,
 }: DynamicSubmitButtonProps) => {
   return (
-    <button onClick={onClick} className={tailwindStyles}>
+    <button type="submit" onClick={onClick} className={tailwindStyles}>
       {content}
     </button>
   );

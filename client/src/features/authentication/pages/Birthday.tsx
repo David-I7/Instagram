@@ -22,6 +22,7 @@ const Birthday = () => {
             This won't be a part of your public profile.
           </p>
           <button
+            type="button"
             className=" pb-4 text-sm text-blue-400"
             onClick={() => setShowingModal(true)}
           >

@@ -10,15 +10,15 @@ type RegisterUser = {
 };
 
 export const handleRegisterForm = (
-  e: FormEvent,
-  userCredential: RegisterUser
+  e: FormEvent<HTMLFormElement>,
+  userCredentials: RegisterUser
 ) => {
   e.preventDefault();
   console.log("handling form");
   const requestObject: RequestInit = {
     method: " POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userCredential),
+    body: JSON.stringify(userCredentials),
     credentials: "include",
   };
 

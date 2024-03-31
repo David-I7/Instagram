@@ -38,7 +38,20 @@ const AuthForm = () => {
   ]);
 
   return (
-    <form onSubmit={(e: FormEvent<HTMLFormElement>) => e.preventDefault()}>
+    <form
+      onSubmit={(e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        navigate("/emailsignup/birthday", {
+          state: {
+            displayUsername,
+            secondaryUsername,
+            secondaryUsernameType,
+            fullName,
+            pwdInput,
+          },
+        });
+      }}
+    >
       <DynamicTextInput
         name="secondaryUsername"
         placeholder="Phone Number or Email"
@@ -119,17 +132,6 @@ const AuthForm = () => {
               (fullName.length > 0 ? validFullName : true)
           )
         )}
-        onClick={() =>
-          navigate("/emailsignup/birthday", {
-            state: {
-              displayUsername,
-              secondaryUsername,
-              secondaryUsernameType,
-              fullName,
-              pwdInput,
-            },
-          })
-        }
       />
     </form>
   );
