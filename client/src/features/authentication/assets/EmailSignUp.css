@@ -1,24 +1,31 @@
 .EmailSignup-main {
-  padding-top: 1rem;
+  padding: 1rem 0;
 }
 
 .EmailSignup-container h1 {
   font-family: "Leckerli One", cursive;
   font-weight: 400;
   color: black;
+  padding-bottom: 1rem;
 }
 
 .EmailSignup-container {
   padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   aspect-ratio: 1/1.7;
   border: 1px solid rgb(203 213 225);
+  width: 22rem;
+  min-width: 18rem;
 }
 
 .EmailSignup-section {
   border: 1px solid rgb(203 213 225);
+  width: 22rem;
+  min-width: 18rem;
+  height: 4rem;
+  display: grid;
+  place-content: center;
 }
 
 @media (max-width: 450px) {
@@ -33,6 +40,12 @@
   .EmailSignup-container h1 {
     padding-top: 1rem;
   }
+
+  .EmailSignup-section {
+    height: 2rem;
+    padding-bottom: 1rem;
+  }
+
   .EmailSignup-main {
     padding: 0;
   }

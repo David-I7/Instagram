@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { validateDisplayUsername } from "../../../validation/authValidation";
 
 const useValidateDisplayUsername = (displayUsername: string) => {
-  const [validUsername, setValidUsername] = useState<boolean>(false);
+  const [validUsername, setValidUsername] = useState<boolean | undefined>(
+    undefined
+  );
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setValidUsername(validateDisplayUsername(displayUsername));

@@ -8,8 +8,13 @@ const registerRouter = express.Router();
 
 //thrown exceptions only get caught in synchronous fn's
 registerRouter.route("/").post((req, res) => {
-  const { displayUsername, secondaryUsername, pwd, fullName }: UserRegister =
-    req.body;
+  const {
+    displayUsername,
+    secondaryUsername,
+    pwd,
+    birthday,
+    fullName,
+  }: UserRegister = req.body;
   //validate Input
   const registerKeys = validateRegisterInput(
     displayUsername,
@@ -19,9 +24,22 @@ registerRouter.route("/").post((req, res) => {
   );
 
   //Register new user
-  registerUser(displayUsername, secondaryUsername, pwd, registerKeys, fullName);
+  registerUser(
+    displayUsername,
+    secondaryUsername,
+    pwd,
+    registerKeys,
+    birthday,
+    fullName
+  );
 
-  return res.status(201).send(`User ${displayUsername} was created`);
+  return res
+    .status(201)
+    .json({
+      success: true,
+      message: `User ${displayUsername} was created`,
+      data: { displayUsername, secondaryUsername, fullName, birthday },
+    });
 });
 
 registerRouter.use(errorHandler);

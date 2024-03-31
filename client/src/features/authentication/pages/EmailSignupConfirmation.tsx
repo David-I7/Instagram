@@ -1,62 +1,40 @@
 import Footer from "../../../components/common/Footer";
-import { Link } from "react-router-dom";
-import "../assets/Birthday.css";
 import DynamicSubmitButton from "../components/DynamicSubmitButton";
-import BirthdayForm from "../components/BirthdayForm";
-import BirthdayModal from "../components/BirthdayModal";
-import { useState } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { getTailwindStyles } from "../helpers/Styles";
-import { isValidAge } from "../helpers/BirthdayDates";
-import { useNavigate, useLocation } from "react-router-dom";
+import "../assets/EmailSignupConfirmation.css";
 
-const Birthday = () => {
-  const [showingModal, setShowingModal] = useState<boolean>(false);
-  const [formIsValid, setFormIsValid] = useState<boolean>(false);
-  const [chosenDate, setChosenDate] = useState<Date>(new Date());
-
-  const getChosenDate = (year: number, month: number, day: number) => {
-    setChosenDate(new Date(year, month, day));
-    setFormIsValid(isValidAge(new Date(year, month, day)));
-  };
-
-  const navigate = useNavigate();
+const EmailSignupConfirmation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <>
-      {showingModal && <BirthdayModal setShowingModal={setShowingModal} />}
       <main className="flex flex-col gap-y-2 items-center pt-4 pb-16">
-        <section className="Birthday-card">
-          <div className="birthdayImage"></div>
-          <h1 className=" font-semibold py-2">Add your birthday</h1>
-          <p className="text-sm pt-2">
-            This won't be a part of your public profile.
+        <section className="EmailConfirmation-card">
+          <div className="emailImage"></div>
+          <h1 className=" font-semibold py-2">Enter Confirmation Code</h1>
+          <p className="text-sm pt-2 pb-5 text-center">
+            Enter the confirmation code we sent to{" "}
+            {location.state.secondaryUsername}.{" "}
+            <button className="text-blue-400 font-medium text-sm">
+              Resend Code.
+            </button>
           </p>
-          <button
-            className=" pb-4 text-sm text-blue-400"
-            onClick={() => setShowingModal(true)}
-          >
-            Why do I need to provide my birthday?
-          </button>
-          <BirthdayForm getChosenDate={getChosenDate} chosenDate={chosenDate} />
-          <p className="py-2 text-xs text-gray-400">
-            You need to enter the date you were born
-          </p>
-          <p className="py-2 text-xs text-gray-400 text-center">
-            Use your own birthday, even if this account is for a business
-            account, a pet, or something else
-          </p>
+          <div className="p-2 w-full">
+            <input
+              className="border border-gray-300 outline-none p-2 rounded-lg w-full bg-gray-50 placeholder:text-gray-300"
+              type="text"
+              name="confirmationCode"
+              placeholder="Confirmation code"
+              autoComplete="off"
+            />
+          </div>
+
           <div className="py-4 px-2 w-full">
             <DynamicSubmitButton
               content="Next"
-              tailwindStyles={getTailwindStyles(formIsValid)}
-              onClick={() =>
-                navigate("/emailsignup/confirmation", {
-                  state: {
-                    ...location.state,
-                    chosenDate,
-                  },
-                })
-              }
+              tailwindStyles={getTailwindStyles(true)}
             />
           </div>
 
@@ -115,4 +93,4 @@ const Birthday = () => {
   );
 };
 
-export default Birthday;
+export default EmailSignupConfirmation;

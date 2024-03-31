@@ -55,7 +55,6 @@ const getMonths = (year: number): string[] => {
 
 const isValidAge = (chosenDate: Date): boolean => {
   const timeDifference = new Date().getTime() - 1000 * 60 * 60 * 24 * 365.4 * 5;
-  console.log(timeDifference, chosenDate, chosenDate.getTime());
 
   if (chosenDate.getTime() > timeDifference) return false;
 

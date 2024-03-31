@@ -11,6 +11,10 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
+    password: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         unique: true,
@@ -21,9 +25,7 @@ const userSchema = new Schema({
     },
     birthday: {
         type: Date,
-    },
-    password: {
-        type: String,
+        required: true,
     },
     refreshToken: {
         type: String,

@@ -8,8 +8,9 @@ const EmailSignup = () => {
     <>
       <main className="EmailSignup-main flex flex-col items-center gap-4">
         <section className="EmailSignup-container max-w-sm rounded-sm">
-          <h1 className="text-5xl text-center">Instagram</h1>
-          <p className="text-gray-500 font-medium text-center">
+          <h1 className="invisible absolute -top-96 -left-96">Instagram</h1>
+          <div className="instagramHeadingImage self-center my-4"></div>
+          <p className="text-gray-500 font-medium text-center pb-4">
             Sign up to see photos and videos from your friends.
           </p>
 
@@ -59,12 +60,12 @@ const EmailSignup = () => {
             </svg>
             Log in with Facebook{" "}
           </button>
-          <div className="or-transition flex w-full">
+          <div className="or-transition flex w-full py-4">
             <span className="text-slate-500 font-bold text-xs">OR</span>
           </div>
           <AuthForm />
         </section>
-        <section className="EmailSignup-section rounded-sm py-6 px-8 max-w-sm w-full text-center">
+        <section className="EmailSignup-section rounded-sm ">
           <p>
             Have an account?{" "}
             <Link className="text-blue-400 font-medium" to="/login">
@@ -84,7 +85,7 @@ const EmailSignup = () => {
               <img
                 alt="Get it on Google Play"
                 width={"140"}
-                className=" min-w-24"
+                className="min-w-32"
                 src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png"
               />
             </a>
@@ -97,7 +98,7 @@ const EmailSignup = () => {
               <img
                 alt="Get it from Microsoft"
                 width={"120px"}
-                className=" min-w-20"
+                className=" min-w-28"
                 src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png"
               />
             </a>

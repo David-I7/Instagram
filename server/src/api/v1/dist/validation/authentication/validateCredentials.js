@@ -11,7 +11,7 @@ const validateFullName = (fullName) => {
     return regex.test(fullName);
 };
 const validatePwd = (pwd) => {
-    const regex = new RegExp(/^(?=.*[a-zA-Z])(?=.*[\d]).{8,64}$/);
+    const regex = new RegExp(/^(?=.*[a-zA-Z]).{8,64}$/);
     return regex.test(pwd);
 };
 const validateEmail = (email) => {
@@ -36,7 +36,7 @@ const validateUsername = (username) => {
     if (validUsername)
         return validUsername;
     else
-        throw new errorObjects_1.AuthError("Invalid Username");
+        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid Username" }, 400);
 };
 const validateAuthInput = (username, pwd) => {
     let results = {
@@ -47,7 +47,7 @@ const validateAuthInput = (username, pwd) => {
     if (validatePwd(pwd))
         results.pwd = "password";
     else
-        throw new errorObjects_1.AuthError("Invalid Password");
+        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid Password" }, 400);
     return results;
 };
 exports.validateAuthInput = validateAuthInput;
@@ -60,20 +60,22 @@ const validateRegisterInput = (displayUsername, secondaryUsername, pwd, fullName
     if (validateDisplayUsername(displayUsername))
         results.displayUsername = "displayUsername";
     else
-        throw new errorObjects_1.AuthError("Invalid Username");
+        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid Username" }, 400);
     if (validateEmail(secondaryUsername))
         results.secondaryUsername = "email";
     else if (validatePhoneNumber(secondaryUsername))
         results.secondaryUsername = "phoneNumber";
+    else
+        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid field" }, 400);
     if (validatePwd(pwd))
         results.pwd = "password";
     else
-        throw new errorObjects_1.AuthError("Invalid Password");
+        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid Password" }, 400);
     if (fullName) {
         if (validateFullName(fullName))
             results.fullName = "fullName";
         else
-            throw new errorObjects_1.AuthError("Invalid Full Name");
+            throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid Full Name" }, 400);
     }
     return results;
 };

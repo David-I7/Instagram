@@ -9,11 +9,12 @@ const getUser = (fieldName, user) => {
     return User_1.default.findOne({ [fieldName]: user });
 };
 exports.getUser = getUser;
-const createUser = async (displayUsername, secondaryUsernameKey, secondaryUsername, pwd, fullName) => {
+const createUser = async (displayUsername, secondaryUsernameKey, secondaryUsername, pwd, birthday, fullName) => {
     await User_1.default.create({
         username: displayUsername,
         [secondaryUsernameKey]: secondaryUsername,
         password: pwd,
+        birthday: birthday,
         fullname: fullName,
     });
 };

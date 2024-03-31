@@ -3,6 +3,7 @@ export interface UserRegister {
   fullName?: string;
   secondaryUsername: string;
   pwd: string;
+  birthday: Date;
 }
 
 export interface UserAuth {

@@ -6,6 +6,7 @@ import EmailSignup from "./features/authentication/pages/EmailSignup";
 import ResetPassword from "./features/authentication/pages/ResetPassword";
 import Birthday from "./features/authentication/pages/Birthday";
 import TestComponent from "./components/common/TestComponent";
+import EmailSignupConfirmation from "./features/authentication/pages/EmailSignupConfirmation";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           </Route>
           <Route path="emailsignup">
             <Route index element={<EmailSignup />} />
-            {/* <Route path="gender" element={<SelectGender />} />*/}
+            <Route path="confirmation" element={<EmailSignupConfirmation />} />
             <Route path="birthday" element={<Birthday />} />
           </Route>
         </Route>

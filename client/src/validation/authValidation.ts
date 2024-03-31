@@ -17,7 +17,7 @@ export const validateEmail = (email: string): boolean => {
 };
 
 export const validatePwd = (pwd: string): boolean => {
-  return new RegExp(/^(?=.*[a-zA-Z])(?=.*[\d]).{8,64}$/).test(pwd);
+  return new RegExp(/^(?=.*[a-zA-Z]).{8,64}$/).test(pwd);
 };
 
 export const validateDisplayUsername = (displayUsername: string): boolean => {
@@ -36,11 +36,9 @@ export const validateUsername = (username: string): boolean => {
 };
 export const validateSecondaryUsername = (
   secondaryUsername: string
-): boolean => {
-  if (
-    validateEmail(secondaryUsername) ||
-    validatePhoneNumber(secondaryUsername)
-  )
-    return true;
-  return false;
+): string => {
+  if (validateEmail(secondaryUsername)) return "email";
+  else if (validatePhoneNumber(secondaryUsername)) return "phoneNumber";
+
+  return "";
 };

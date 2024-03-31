@@ -14,7 +14,7 @@ const validateFullName = (fullName: string): boolean => {
 };
 
 const validatePwd = (pwd: string): boolean => {
-  const regex = new RegExp(/^(?=.*[a-zA-Z])(?=.*[\d]).{8,64}$/);
+  const regex = new RegExp(/^(?=.*[a-zA-Z]).{8,64}$/);
   return regex.test(pwd);
 };
 

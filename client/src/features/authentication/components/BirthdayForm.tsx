@@ -1,16 +1,14 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { getDays, getYears, getMonths } from "../helpers/BirthdayDates";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { handleRegisterForm } from "../../../services/formSubmission";
 
 type BirthdayFormProps = {
   getChosenDate: (year: number, month: number, day: number) => void;
+  chosenDate: Date;
 };
 
-const BirthdayForm = ({ getChosenDate }: BirthdayFormProps) => {
-  const monthRef = useRef<HTMLSelectElement>(null);
-  const dayRef = useRef<HTMLSelectElement>(null);
-  const yearRef = useRef<HTMLSelectElement>(null);
-
+const BirthdayForm = ({ getChosenDate, chosenDate }: BirthdayFormProps) => {
   const today = new Date();
   const currentMonth = today.getMonth();
   const currentDay = today.getDate();
@@ -24,12 +22,13 @@ const BirthdayForm = ({ getChosenDate }: BirthdayFormProps) => {
     e: ChangeEvent<HTMLSelectElement>,
     actionType: string
   ) => {
+    console.log(e.target.selectedOptions[0].value);
     if (actionType === "month") {
-      setSelectedMonth(Number(monthRef.current?.selectedOptions[0].value));
+      setSelectedMonth(Number(e.target.selectedOptions[0].value));
     } else if (actionType === "day") {
-      setSelectedDay(Number(dayRef.current?.selectedOptions[0].value));
+      setSelectedDay(Number(e.target.selectedOptions[0].value));
     } else if (actionType === "year") {
-      setSelectedYear(Number(yearRef.current?.selectedOptions[0].value));
+      setSelectedYear(Number(e.target.selectedOptions[0].value));
     }
   };
 
@@ -38,12 +37,23 @@ const BirthdayForm = ({ getChosenDate }: BirthdayFormProps) => {
   }, [selectedDay, selectedMonth, selectedYear]);
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   return (
-    <form method="post" action='http"//localhost:3000/auth'>
+    <form
+      onSubmit={(e: FormEvent) => {
+        handleRegisterForm(e, {
+          displayUsername: location.state.displayUsername,
+          secondaryUsername: location.state.secondaryUsername,
+          pwd: location.state.pwd,
+          birthday: chosenDate,
+          fullName: location.state.fullName,
+        });
+
+        navigate("emailsignup/confirmation");
+      }}
+    >
       <select
-        className="mr-2 border border-gray-300 text-gray-400 text-xs p-2 outline-none"
-        ref={monthRef}
+        className="mr-2 border border-gray-300 text-gray-500 text-xs p-2 outline-none"
         name="month"
         title="Month:"
         defaultValue={currentMonth}
@@ -62,8 +72,7 @@ const BirthdayForm = ({ getChosenDate }: BirthdayFormProps) => {
         })}
       </select>
       <select
-        className="mr-2 border border-gray-300 text-gray-400 text-xs p-2 outline-none"
-        ref={dayRef}
+        className="mr-2 border border-gray-300 text-gray-500 text-xs p-2 outline-none"
         name="day"
         title="Day:"
         defaultValue={currentDay}
@@ -91,11 +100,10 @@ const BirthdayForm = ({ getChosenDate }: BirthdayFormProps) => {
             })}
       </select>
       <select
-        className="border border-gray-300 text-gray-400 text-xs p-2 outline-none"
+        className="border border-gray-300 text-gray-500 text-xs p-2 outline-none"
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
           handleChange(e, "year")
         }
-        ref={yearRef}
         name="year"
         title="Year:"
         defaultValue={currentYear}

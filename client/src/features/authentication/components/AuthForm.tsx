@@ -1,28 +1,41 @@
 import DynamicPasswordInput from "./DynamicPasswordInput";
 import DynamicSubmitButton from "./DynamicSubmitButton";
 import DynamicTextInput from "./DynamicTextInput";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { getTailwindStyles } from "../helpers/Styles";
 import useValidatePwd from "../hooks/useValidatePwd";
 import useValidateDisplayUsername from "../hooks/useValidateDisplayUsername";
 import useValidateSecondaryUsername from "../hooks/useValidateSecondaryUsername";
 import { validateFullName } from "../../../validation/authValidation";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const [pwdInput, setPwdInput] = useState<string>("");
   const validPwd = useValidatePwd(pwdInput);
   const [fullName, setFullName] = useState<string>("");
-  const [validFullName, setValidFullname] = useState<boolean>(false);
+  const [validFullName, setValidFullname] = useState<boolean | undefined>(
+    undefined
+  );
   const [displayUsername, setDisplayUsername] = useState<string>("");
   const validDisplayUsername = useValidateDisplayUsername(displayUsername);
   const [secondaryUsername, setSecondaryUsername] = useState<string>("");
-  const validSecondaryUsername =
+  const { validSecondaryUsername, secondaryUsernameType } =
     useValidateSecondaryUsername(secondaryUsername);
   const handleBlur = () => {
     setValidFullname(validateFullName(fullName));
   };
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setDisplayUsername(location.state?.displayUsername ?? "");
+    setSecondaryUsername(location.state?.secondaryUsername ?? "");
+    setFullName(location.state?.fullName ?? "");
+  }, [
+    location.state?.displayUsername,
+    location.state?.secondaryUsername,
+    location.state?.fullName,
+  ]);
 
   return (
     <form onSubmit={(e: FormEvent<HTMLFormElement>) => e.preventDefault()}>
@@ -35,7 +48,7 @@ const AuthForm = () => {
       />
       <DynamicTextInput
         name="fullName"
-        placeholder="Full name"
+        placeholder="Full Name"
         textInput={fullName}
         setTextInput={setFullName}
         validInput={validFullName}
@@ -99,14 +112,22 @@ const AuthForm = () => {
       <DynamicSubmitButton
         content={"Next"}
         tailwindStyles={getTailwindStyles(
-          validDisplayUsername &&
-            validSecondaryUsername &&
-            validPwd &&
-            (fullName.length > 0 ? validFullName : true)
+          Boolean(
+            validDisplayUsername &&
+              validSecondaryUsername &&
+              validPwd &&
+              (fullName.length > 0 ? validFullName : true)
+          )
         )}
         onClick={() =>
-          navigate("/birthday", {
-            state: { displayUsername, secondaryUsername, fullName, pwdInput },
+          navigate("/emailsignup/birthday", {
+            state: {
+              displayUsername,
+              secondaryUsername,
+              secondaryUsernameType,
+              fullName,
+              pwdInput,
+            },
           })
         }
       />

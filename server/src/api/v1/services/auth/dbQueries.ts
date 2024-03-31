@@ -9,12 +9,14 @@ export const createUser = async (
   secondaryUsernameKey: string,
   secondaryUsername: string,
   pwd: string,
+  birthday: Date,
   fullName?: string
 ) => {
   await User.create({
     username: displayUsername,
     [secondaryUsernameKey]: secondaryUsername,
     password: pwd,
+    birthday: birthday,
     fullname: fullName,
   });
 };

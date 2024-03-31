@@ -7,8 +7,9 @@ const Login = () => {
   return (
     <>
       <main className="Login">
-        <section className="Login-container flex flex-col justify-center w-4/6 max-w-sm rounded-sm">
-          <h1 className="text-center text-4xl mb-10">Instagram</h1>
+        <section className="Login-container flex flex-col justify-center w-4/6 max-w-sm rounded-sm ">
+          <h1 className="invisible absolute -top-96 -left-96">Instagram</h1>
+          <div className="instagramHeadingImage self-center mt-4 mb-10"></div>
           <LoginForm />
           <div className="or-transition flex w-full mb-6">
             <span className="text-slate-500 font-bold text-xs">OR</span>
@@ -86,7 +87,7 @@ const Login = () => {
               <img
                 alt="Get it on Google Play"
                 width={"140"}
-                className=" min-w-24"
+                className=" min-w-32"
                 src="https://static.cdninstagram.com/rsrc.php/v3/yz/r/c5Rp7Ym-Klz.png"
               />
             </a>
@@ -99,7 +100,7 @@ const Login = () => {
               <img
                 alt="Get it from Microsoft"
                 width={"120px"}
-                className=" min-w-20"
+                className=" min-w-28"
                 src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png"
               />
             </a>

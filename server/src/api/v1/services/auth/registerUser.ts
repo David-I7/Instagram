@@ -6,6 +6,7 @@ const registerUser = (
   secondaryUsername: string,
   pwd: string,
   registerKeys: RegisterResults,
+  birthday: Date,
   fullname?: string
 ) => {
   createUser(
@@ -13,6 +14,7 @@ const registerUser = (
     registerKeys.secondaryUsername,
     secondaryUsername,
     pwd,
+    birthday,
     fullname
   );
 };

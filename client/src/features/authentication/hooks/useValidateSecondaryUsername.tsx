@@ -2,17 +2,23 @@ import { useEffect, useState } from "react";
 import { validateSecondaryUsername } from "../../../validation/authValidation";
 
 const useValidateSecondaryUsername = (secondaryUsername: string) => {
-  const [validUsername, setValidUsername] = useState<boolean>(false);
+  const [validSecondaryUsername, setValidSecondaryUsername] = useState<
+    boolean | undefined
+  >(undefined);
+  const [secondaryUsernameType, setSecondaryUsernameType] =
+    useState<string>("");
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setValidUsername(validateSecondaryUsername(secondaryUsername));
+      const type = validateSecondaryUsername(secondaryUsername);
+      setSecondaryUsernameType(type);
+      setValidSecondaryUsername(Boolean(type));
     }, 500);
 
     return () => {
       clearTimeout(timeoutId);
     };
   }, [secondaryUsername]);
-  return validUsername;
+  return { validSecondaryUsername, secondaryUsernameType };
 };
 
 export default useValidateSecondaryUsername;
