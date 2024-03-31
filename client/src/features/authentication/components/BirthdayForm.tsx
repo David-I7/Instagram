@@ -1,14 +1,19 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { getDays, getYears, getMonths } from "../helpers/BirthdayDates";
-import { useLocation, useNavigate } from "react-router-dom";
-import { handleRegisterForm } from "../../../services/formSubmission";
+import { useNavigate, useLocation } from "react-router-dom";
+import DynamicSubmitButton from "./DynamicSubmitButton";
+import { getTailwindStyles } from "../helpers/Styles";
+import { isValidAge } from "../helpers/BirthdayDates";
 
-type BirthdayFormProps = {
-  getChosenDate: (year: number, month: number, day: number) => void;
-  chosenDate: Date;
-};
+const BirthdayForm = () => {
+  const [formIsValid, setFormIsValid] = useState<boolean>(false);
+  const [chosenDate, setChosenDate] = useState<Date>(new Date());
 
-const BirthdayForm = ({ getChosenDate, chosenDate }: BirthdayFormProps) => {
+  const getChosenDate = (year: number, month: number, day: number) => {
+    setChosenDate(new Date(year, month, day));
+    setFormIsValid(isValidAge(new Date(year, month, day)));
+  };
+
   const today = new Date();
   const currentMonth = today.getMonth();
   const currentDay = today.getDate();
@@ -22,7 +27,6 @@ const BirthdayForm = ({ getChosenDate, chosenDate }: BirthdayFormProps) => {
     e: ChangeEvent<HTMLSelectElement>,
     actionType: string
   ) => {
-    console.log(e.target.selectedOptions[0].value);
     if (actionType === "month") {
       setSelectedMonth(Number(e.target.selectedOptions[0].value));
     } else if (actionType === "day") {
@@ -38,20 +42,9 @@ const BirthdayForm = ({ getChosenDate, chosenDate }: BirthdayFormProps) => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  return (
-    <form
-      onSubmit={(e: FormEvent) => {
-        handleRegisterForm(e, {
-          displayUsername: location.state.displayUsername,
-          secondaryUsername: location.state.secondaryUsername,
-          pwd: location.state.pwd,
-          birthday: chosenDate,
-          fullName: location.state.fullName,
-        });
 
-        navigate("emailsignup/confirmation");
-      }}
-    >
+  return (
+    <form method="post" action='http"//localhost:3000/auth'>
       <select
         className="mr-2 border border-gray-300 text-gray-500 text-xs p-2 outline-none"
         name="month"
@@ -116,6 +109,27 @@ const BirthdayForm = ({ getChosenDate, chosenDate }: BirthdayFormProps) => {
           );
         })}
       </select>
+      <p className="py-2 text-xs text-gray-400">
+        You need to enter the date you were born
+      </p>
+      <p className="py-2 text-xs text-gray-400 text-center">
+        Use your own birthday, even if this account is for a business account, a
+        pet, or something else
+      </p>
+      <div className="py-4 px-2 w-full">
+        <DynamicSubmitButton
+          content="Next"
+          tailwindStyles={getTailwindStyles(formIsValid)}
+          onClick={() =>
+            navigate("/emailsignup/confirmation", {
+              state: {
+                ...location.state,
+                chosenDate,
+              },
+            })
+          }
+        />
+      </div>
     </form>
   );
 };
