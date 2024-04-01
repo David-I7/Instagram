@@ -4,15 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbQueries_1 = require("./dbQueries");
-const errorObjects_1 = require("../../config/errorObjects");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonResponse_1 = require("../../config/jsonResponse");
 const authenticateUser = async (username, pwd, authKeys) => {
     const matchingUser = await (0, dbQueries_1.getUser)(authKeys.username, username);
     if (!matchingUser) {
-        throw new errorObjects_1.AuthError("Not Found", { details: `Username: ${username}, does not exist` }, 404);
+        return (0, jsonResponse_1.jsonFail)({
+            username: `Username: ${username}, is not associated with an account`,
+        });
     }
     if (!(await bcrypt_1.default.compare(pwd, matchingUser.password))) {
-        throw new errorObjects_1.AuthError("Forbidden", { details: `Password: ${pwd} is incorrect` }, 403);
+        return (0, jsonResponse_1.jsonFail)({ username: `Incorrect Password` });
     }
     return matchingUser;
 };

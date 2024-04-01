@@ -21,22 +21,25 @@ const EmailSignupConfirmation = () => {
               Resend Code.
             </button>
           </p>
-          <div className="p-2 w-full">
-            <input
-              className="border border-gray-300 outline-none p-2 rounded-lg w-full bg-gray-50 placeholder:text-gray-300"
-              type="text"
-              name="confirmationCode"
-              placeholder="Confirmation code"
-              autoComplete="off"
-            />
-          </div>
 
-          <div className="py-4 px-2 w-full">
-            <DynamicSubmitButton
-              content="Next"
-              tailwindStyles={getTailwindStyles(true)}
-            />
-          </div>
+          <form className="w-full">
+            <div className="w-full p-2">
+              <input
+                className="border border-gray-300 outline-none p-2 rounded-lg w-full bg-gray-50 placeholder:text-gray-300"
+                type="text"
+                name="confirmationCode"
+                placeholder="Confirmation code"
+                autoComplete="off"
+              />
+            </div>
+
+            <div className="py-4 px-2 w-full">
+              <DynamicSubmitButton
+                content="Next"
+                tailwindStyles={getTailwindStyles(true)}
+              />
+            </div>
+          </form>
 
           <button
             className="text-blue-400 font-medium text-sm"

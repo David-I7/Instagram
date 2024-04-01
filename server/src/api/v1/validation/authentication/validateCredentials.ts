@@ -39,7 +39,7 @@ const validateUsername = (username: string): JSONFail | string => {
   }
 
   if (validUsername) return validUsername;
-  else return jsonFail({ data: { username: "Invalid Username" } });
+  else return jsonFail({ username: "Invalid Username" });
 };
 
 export const validateSecondaryUsername = (
@@ -48,7 +48,7 @@ export const validateSecondaryUsername = (
   if (validateEmail(secondaryUsername)) return "email";
   if (validatePhoneNumber(secondaryUsername)) return "phoneNumber";
 
-  return jsonFail({ data: { secondaryUsername: "Invalid SecondaryUsername" } });
+  return jsonFail({ secondaryUsername: "Invalid Secondary Username" });
 };
 
 export const validateAuthInput = (
@@ -82,24 +82,23 @@ export const validateRegisterInput = (
 ): RegisterKeys | JSONFail => {
   let results: RegisterKeys = {
     secondaryUsername: "",
+    displayUsername: "",
   };
 
   if (!validateDisplayUsername(displayUsername))
-    return jsonFail({ data: { username: "Invalid Username" } });
+    return jsonFail({ username: "Invalid Username" });
+  else results.displayUsername = "username";
 
   if (validateEmail(secondaryUsername)) results.secondaryUsername = "email";
   else if (validatePhoneNumber(secondaryUsername)) {
     results.secondaryUsername = "phoneNumber";
-  } else
-    return jsonFail({
-      data: { secondaryUsername: "Invalid Secondary Username" },
-    });
+  } else return jsonFail({ secondaryUsername: "Invalid Secondary Username" });
 
-  if (!validatePwd(pwd)) return jsonFail({ data: { pwd: "Invalid Password" } });
+  if (!validatePwd(pwd)) return jsonFail({ pwd: "Invalid Password" });
 
   if (fullName) {
     if (!validateFullName(fullName))
-      return jsonFail({ data: { fullName: "Invalid Full Name" } });
+      return jsonFail({ fullName: "Invalid Full Name" });
   }
   return results;
 };

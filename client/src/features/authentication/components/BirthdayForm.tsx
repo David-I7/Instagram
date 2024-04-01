@@ -47,15 +47,15 @@ const BirthdayForm = () => {
       onSubmit={(e: FormEvent<HTMLFormElement>) => {
         handleRegisterForm(e, {
           displayUsername: location.state.displayUsername,
-          secondaryUsername: location.state.secondaryUsrname,
-          pwd: location.state.pwd,
+          secondaryUsername: location.state.secondaryUsername,
+          pwd: location.state.pwdInput,
           birthday: chosenDate,
           fullName: location.state.fullName,
         });
         navigate("/emailsignup/confirmation", {
           state: {
             ...location.state,
-            chosenDate,
+            birthday: chosenDate,
           },
         });
       }}

@@ -14,12 +14,10 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    unique: true,
     // match: /^[\w-]+@[a-zA-Z_]+.[a-zA-Z]{2,3}$/,
   },
   phoneNumber: {
     type: String,
-    unique: true,
   },
   birthday: {
     type: Date,

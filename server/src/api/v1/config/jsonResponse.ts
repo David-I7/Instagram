@@ -1,5 +1,3 @@
-import { AuthError } from "../config/errorObjects";
-
 export type JSONError = {
   status: "error";
   message: string;
@@ -18,10 +16,12 @@ export const jsonError = <Exception extends Error>(
 
 export type JSONSuccess = {
   status: "success";
-  data: { [key: string]: any };
+  data: { [key: string]: any } | null;
 };
 
-export const jsonSuccess = (data: { [key: string]: any }): JSONSuccess => {
+export const jsonSuccess = (
+  data: { [key: string]: any } | null = null
+): JSONSuccess => {
   return {
     status: "success",
     data,

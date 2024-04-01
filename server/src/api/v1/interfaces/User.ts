@@ -17,6 +17,7 @@ export interface AuthKeys {
 
 export interface RegisterKeys {
   secondaryUsername: string;
+  displayUsername: string;
 }
 
 // types

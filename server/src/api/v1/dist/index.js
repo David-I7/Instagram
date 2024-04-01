@@ -17,6 +17,8 @@ const register_1 = __importDefault(require("./routes/register"));
 app.use("/register", register_1.default);
 const auth_1 = __importDefault(require("./routes/auth"));
 app.use("/auth", auth_1.default);
+const validate_1 = __importDefault(require("./routes/validate"));
+app.use("/validate", validate_1.default);
 app.get("/", (req, res) => {
     res.sendFile(pathConstants_1.clientIndex);
 });

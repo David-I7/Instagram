@@ -14,9 +14,9 @@ export const handleRegisterForm = (
   userCredentials: RegisterUser
 ) => {
   e.preventDefault();
-  console.log("handling form");
+  console.log(userCredentials);
   const requestObject: RequestInit = {
-    method: " POST",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userCredentials),
     credentials: "include",

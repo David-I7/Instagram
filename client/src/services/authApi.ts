@@ -5,5 +5,5 @@ export const registerUser = async (
   URL = REGISTER
 ) => {
   const response = await fetch(URL, requestInit);
-  console.log(await response.json());
+  console.log(response);
 };

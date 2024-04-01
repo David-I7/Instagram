@@ -12,13 +12,11 @@ const authenticateUser = async (
 
   if (!matchingUser) {
     return jsonFail({
-      data: {
-        username: `Username: ${username}, is not associated with an account`,
-      },
+      username: `An account with the username ${username} does not exist`,
     });
   }
   if (!(await bcrypt.compare(pwd, matchingUser.password!))) {
-    return jsonFail({ data: { username: `Incorrect Password` } });
+    return jsonFail({ username: `Incorrect Password` });
   }
 
   return matchingUser;

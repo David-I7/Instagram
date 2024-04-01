@@ -1,13 +1,12 @@
-type AuthErrorObject = {
+type ServerErrorObject = {
   [key: string]: any;
-  details: string;
 };
 
-export class AuthError extends Error {
+export class ServerError extends Error {
   constructor(
     public message: string,
-    public data: AuthErrorObject,
-    public status: number
+    public data: ServerErrorObject,
+    public code: number
   ) {
     super(message);
   }

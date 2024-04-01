@@ -5,28 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const validateCredentials_1 = require("../validation/authentication/validateCredentials");
 const authenticateUser_1 = __importDefault(require("../services/auth/authenticateUser"));
-const errorObjects_1 = require("../config/errorObjects");
 const jsonResponse_1 = require("../config/jsonResponse");
-const authController = async (req, res, next) => {
+const authController = async (req, res) => {
     const { username, pwd } = req.body;
-    let authKeys;
-    try {
-        authKeys = (0, validateCredentials_1.validateAuthInput)(username, pwd);
-    }
-    catch (err) {
-        if (err instanceof errorObjects_1.AuthError) {
-            return res.status(err.status).json((0, jsonResponse_1.getJsonError)(err));
-        }
-    }
-    let match;
-    try {
-        match = await (0, authenticateUser_1.default)(username, pwd, authKeys);
-    }
-    catch (err) {
-        if (err instanceof errorObjects_1.AuthError) {
-            return res.status(err.status).json((0, jsonResponse_1.getJsonError)(err));
-        }
-    }
-    return res.status(200).json((0, jsonResponse_1.getJsonSuccess)(200, { match }));
+    const vResults = (0, validateCredentials_1.validateAuthInput)(username, pwd);
+    if (vResults.status)
+        return res.status(400).json(vResults);
+    const match = await (0, authenticateUser_1.default)(username, pwd, vResults);
+    if (match.status)
+        return res.status(403).json(match);
+    return res.status(200).json((0, jsonResponse_1.jsonSuccess)({ user: match }));
 };
 exports.default = authController;

@@ -17,6 +17,8 @@ import registerRouter from "./routes/register";
 app.use("/register", registerRouter);
 import authRouter from "./routes/auth";
 app.use("/auth", authRouter);
+import validateRouter from "./routes/validate";
+app.use("/validate", validateRouter);
 
 app.get("/", (req, res) => {
   res.sendFile(clientIndex);
