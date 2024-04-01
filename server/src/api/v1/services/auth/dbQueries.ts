@@ -4,7 +4,7 @@ export const getUser = (fieldName: string, user: string) => {
   return User.findOne({ [fieldName]: user });
 };
 
-export const createUser = async (
+export const createUser = (
   displayUsername: string,
   secondaryUsernameKey: string,
   secondaryUsername: string,
@@ -12,7 +12,7 @@ export const createUser = async (
   birthday: Date,
   fullName?: string
 ) => {
-  await User.create({
+  return User.create({
     username: displayUsername,
     [secondaryUsernameKey]: secondaryUsername,
     password: pwd,

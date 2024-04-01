@@ -66,7 +66,7 @@ const validateRegisterInput = (displayUsername, secondaryUsername, pwd, fullName
     else if (validatePhoneNumber(secondaryUsername))
         results.secondaryUsername = "phoneNumber";
     else
-        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid field" }, 400);
+        throw new errorObjects_1.AuthError("Bad Request", { details: "Invalid SecondaryUsername" }, 400);
     if (validatePwd(pwd))
         results.pwd = "password";
     else

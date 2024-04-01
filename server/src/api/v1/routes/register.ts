@@ -1,8 +1,9 @@
 import express from "express";
-import { UserRegister } from "../interfaces/User";
+import { RegisterKeys, UserRegister } from "../interfaces/User";
 import { validateRegisterInput } from "../validation/authentication/validateCredentials";
 import registerUser from "../services/auth/registerUser";
 import errorHandler from "../middlewares/errorHandler";
+import { JSONFail, jsonSuccess } from "../config/jsonResponse";
 
 const registerRouter = express.Router();
 
@@ -15,31 +16,28 @@ registerRouter.route("/").post((req, res) => {
     birthday,
     fullName,
   }: UserRegister = req.body;
+
   //validate Input
-  const registerKeys = validateRegisterInput(
+  const vResults = validateRegisterInput(
     displayUsername,
     secondaryUsername,
     pwd,
     fullName
   );
 
+  if ((vResults as JSONFail).status) return res.status(400).json(vResults);
+
   //Register new user
-  registerUser(
+  const newUser = registerUser(
     displayUsername,
     secondaryUsername,
     pwd,
-    registerKeys,
+    vResults as RegisterKeys,
     birthday,
     fullName
   );
 
-  return res
-    .status(201)
-    .json({
-      success: true,
-      message: `User ${displayUsername} was created`,
-      data: { displayUsername, secondaryUsername, fullName, birthday },
-    });
+  return res.status(201).json(jsonSuccess({ data: { user: newUser } }));
 });
 
 registerRouter.use(errorHandler);

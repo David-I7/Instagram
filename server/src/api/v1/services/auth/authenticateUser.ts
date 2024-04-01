@@ -1,28 +1,24 @@
 import { getUser } from "./dbQueries";
-import { AuthResults } from "../../interfaces/User";
-import { AuthError } from "../../config/errorObjects";
+import { AuthKeys } from "../../interfaces/User";
 import bcrypt from "bcrypt";
+import { jsonFail, JSONFail } from "../../config/jsonResponse";
 
 const authenticateUser = async (
   username: string,
   pwd: string,
-  authKeys: AuthResults
-): Promise<typeof matchingUser> | never => {
+  authKeys: AuthKeys
+): Promise<typeof matchingUser | JSONFail> => {
   const matchingUser = await getUser(authKeys.username, username);
 
   if (!matchingUser) {
-    throw new AuthError(
-      "Not Found",
-      { details: `Username: ${username}, does not exist` },
-      404
-    );
+    return jsonFail({
+      data: {
+        username: `Username: ${username}, is not associated with an account`,
+      },
+    });
   }
   if (!(await bcrypt.compare(pwd, matchingUser.password!))) {
-    throw new AuthError(
-      "Forbidden",
-      { details: `Password: ${pwd} is incorrect` },
-      403
-    );
+    return jsonFail({ data: { username: `Incorrect Password` } });
   }
 
   return matchingUser;

@@ -10,11 +10,10 @@ const errorHandler_1 = __importDefault(require("../middlewares/errorHandler"));
 const registerRouter = express_1.default.Router();
 registerRouter.route("/").post((req, res) => {
     const { displayUsername, secondaryUsername, pwd, birthday, fullName, } = req.body;
+    console.log(req.body);
     const registerKeys = (0, validateCredentials_1.validateRegisterInput)(displayUsername, secondaryUsername, pwd, fullName);
     (0, registerUser_1.default)(displayUsername, secondaryUsername, pwd, registerKeys, birthday, fullName);
-    return res
-        .status(201)
-        .json({
+    return res.status(201).json({
         success: true,
         message: `User ${displayUsername} was created`,
         data: { displayUsername, secondaryUsername, fullName, birthday },

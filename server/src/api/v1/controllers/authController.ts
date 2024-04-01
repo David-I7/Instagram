@@ -1,8 +1,7 @@
-import { AuthResults, UserAuth } from "../interfaces/User";
+import { AuthKeys, UserAuth } from "../interfaces/User";
 import { validateAuthInput } from "../validation/authentication/validateCredentials";
 import authenticateUser from "../services/auth/authenticateUser";
-import { AuthError } from "../config/errorObjects";
-import { getJsonError, getJsonSuccess } from "../config/jsonResponse";
+import { jsonSuccess, JSONFail } from "../config/jsonResponse";
 import { NextFunction, Request, Response } from "express";
 
 const authController = async (
@@ -12,28 +11,17 @@ const authController = async (
 ) => {
   const { username, pwd }: UserAuth = req.body;
   //validate input
-  let authKeys: AuthResults | undefined;
-  try {
-    authKeys = validateAuthInput(username, pwd);
-  } catch (err: unknown) {
-    if (err instanceof AuthError) {
-      return res.status(err.status).json(getJsonError(err));
-    }
-  }
+  const vResults = validateAuthInput(username, pwd);
+
+  if ((vResults as JSONFail).status) return res.status(400).json(vResults);
 
   // authenticate user
-  let match: Awaited<ReturnType<typeof authenticateUser>> | undefined;
-  try {
-    match = await authenticateUser(username, pwd, authKeys!);
-  } catch (err: unknown) {
-    // failed autentication
-    if (err instanceof AuthError) {
-      return res.status(err.status).json(getJsonError(err));
-    }
-  }
+  const match = await authenticateUser(username, pwd, vResults as AuthKeys);
+
+  if ((match as JSONFail).status) return res.status(403).json(match);
 
   //successfull autentication
-  return res.status(200).json(getJsonSuccess(200, { match }));
+  return res.status(200).json(jsonSuccess({ data: { user: match } }));
 };
 
 export default authController;

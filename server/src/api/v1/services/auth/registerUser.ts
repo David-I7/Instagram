@@ -1,22 +1,27 @@
-import { RegisterResults } from "../../interfaces/User";
+import { RegisterKeys } from "../../interfaces/User";
 import { createUser } from "../../services/auth/dbQueries";
+import bcrypt from "bcrypt";
 
-const registerUser = (
+const registerUser = async (
   displayUsername: string,
   secondaryUsername: string,
   pwd: string,
-  registerKeys: RegisterResults,
+  registerKeys: RegisterKeys,
   birthday: Date,
   fullname?: string
-) => {
-  createUser(
+): ReturnType<typeof createUser> => {
+  const hashedPwd = await bcrypt.hash(pwd, 10);
+
+  const newUser = await createUser(
     displayUsername,
     registerKeys.secondaryUsername,
     secondaryUsername,
-    pwd,
+    hashedPwd,
     birthday,
     fullname
   );
+
+  return newUser;
 };
 
 export default registerUser;

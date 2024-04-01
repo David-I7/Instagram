@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from "express";
+import { AuthError } from "../config/errorObjects";
+import { jsonError } from "../config/jsonResponse";
 
 const errorHandler = (
   err: unknown,
@@ -6,7 +8,9 @@ const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  return res.status(500).send("An unknown error has occurred");
+  if (err instanceof Error) return res.send(500).json(jsonError(err));
+
+  return;
 };
 
 export default errorHandler;

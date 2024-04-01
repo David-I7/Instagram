@@ -1,5 +1,5 @@
-import { AuthResults, RegisterResults } from "../../interfaces/User";
-import { AuthError } from "../../config/errorObjects";
+import { AuthKeys, RegisterKeys } from "../../interfaces/User";
+import { jsonFail, JSONFail } from "../../config/jsonResponse";
 
 const validatePhoneNumber = (phoneNumber: string): boolean => {
   const regex = new RegExp(/^(\+\d{1,2})? ?\(?\d{3}\)?[ .-]?\d{3}[ .-]?\d{4}$/);
@@ -28,7 +28,7 @@ const validateDisplayUsername = (displayUsername: string): boolean => {
   return regex.test(displayUsername);
 };
 
-const validateUsername = (username: string): never | string => {
+const validateUsername = (username: string): JSONFail | string => {
   let validUsername: string = "";
   if (validateDisplayUsername(username)) {
     validUsername = "displayUsername";
@@ -39,23 +39,39 @@ const validateUsername = (username: string): never | string => {
   }
 
   if (validUsername) return validUsername;
-  else throw new AuthError("Bad Request", { details: "Invalid Username" }, 400);
+  else return jsonFail({ data: { username: "Invalid Username" } });
+};
+
+export const validateSecondaryUsername = (
+  secondaryUsername: string
+): string | JSONFail => {
+  if (validateEmail(secondaryUsername)) return "email";
+  if (validatePhoneNumber(secondaryUsername)) return "phoneNumber";
+
+  return jsonFail({ data: { secondaryUsername: "Invalid SecondaryUsername" } });
 };
 
 export const validateAuthInput = (
   username: string,
   pwd: string
-): AuthResults | never => {
-  let results: AuthResults = {
+): AuthKeys | JSONFail => {
+  let results: AuthKeys = {
     username: "",
-    pwd: "",
   };
-  results.username = validateUsername(username);
 
-  if (validatePwd(pwd)) results.pwd = "password";
-  else throw new AuthError("Bad Request", { details: "Invalid Password" }, 400);
+  const vuResult = validateUsername(username);
 
-  return results;
+  if (typeof vuResult === "string") {
+    results.username = vuResult;
+  } else {
+    return vuResult;
+  }
+
+  if (validatePwd(pwd)) {
+    return results;
+  }
+
+  return vuResult as unknown as JSONFail;
 };
 
 export const validateRegisterInput = (
@@ -63,29 +79,36 @@ export const validateRegisterInput = (
   secondaryUsername: string,
   pwd: string,
   fullName?: string
-): RegisterResults | never => {
-  let results: RegisterResults = {
-    displayUsername: "",
+): RegisterKeys | JSONFail => {
+  let results: RegisterKeys = {
     secondaryUsername: "",
-    pwd: "",
   };
 
-  if (validateDisplayUsername(displayUsername))
-    results.displayUsername = "displayUsername";
-  else throw new AuthError("Bad Request", { details: "Invalid Username" }, 400);
+  if (!validateDisplayUsername(displayUsername))
+    return jsonFail({ data: { username: "Invalid Username" } });
 
   if (validateEmail(secondaryUsername)) results.secondaryUsername = "email";
-  else if (validatePhoneNumber(secondaryUsername))
+  else if (validatePhoneNumber(secondaryUsername)) {
     results.secondaryUsername = "phoneNumber";
-  else throw new AuthError("Bad Request", { details: "Invalid field" }, 400);
+  } else
+    return jsonFail({
+      data: { secondaryUsername: "Invalid Secondary Username" },
+    });
 
-  if (validatePwd(pwd)) results.pwd = "password";
-  else throw new AuthError("Bad Request", { details: "Invalid Password" }, 400);
+  if (!validatePwd(pwd)) return jsonFail({ data: { pwd: "Invalid Password" } });
 
   if (fullName) {
-    if (validateFullName(fullName)) results.fullName = "fullName";
-    else
-      throw new AuthError("Bad Request", { details: "Invalid Full Name" }, 400);
+    if (!validateFullName(fullName))
+      return jsonFail({ data: { fullName: "Invalid Full Name" } });
   }
   return results;
+};
+
+export {
+  validateDisplayUsername,
+  validateEmail,
+  validateFullName,
+  validatePhoneNumber,
+  validatePwd,
+  validateUsername,
 };

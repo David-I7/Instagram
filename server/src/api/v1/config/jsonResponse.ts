@@ -1,40 +1,41 @@
 import { AuthError } from "../config/errorObjects";
 
-type JsonError = {
-  success: boolean;
-  status: number;
-  error: {
-    message: string;
-    details: string;
-  };
-  data: {};
+export type JSONError = {
+  status: "error";
+  message: string;
+  data?: { [key: string]: any };
+  code?: number;
 };
 
-export const getJsonError = (error: AuthError): JsonError => {
+export const jsonError = <Exception extends Error>(
+  error: Exception
+): JSONError => {
   return {
-    success: false,
-    status: error.status,
-    error: {
-      message: error.message,
-      details: error.data.details,
-    },
-    data: {},
+    status: "error",
+    message: error.message,
   };
 };
 
-type JsonSuccess = {
-  sucess: true;
-  status: number;
+export type JSONSuccess = {
+  status: "success";
   data: { [key: string]: any };
 };
 
-export const getJsonSuccess = (
-  status: number,
-  data: { [key: string]: any }
-): JsonSuccess => {
+export const jsonSuccess = (data: { [key: string]: any }): JSONSuccess => {
   return {
-    sucess: true,
-    status,
+    status: "success",
+    data,
+  };
+};
+
+export type JSONFail = {
+  status: "fail";
+  data: { [key: string]: any };
+};
+
+export const jsonFail = (data: { [key: string]: any }): JSONFail => {
+  return {
+    status: "fail",
     data,
   };
 };

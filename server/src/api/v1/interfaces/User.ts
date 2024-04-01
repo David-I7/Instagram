@@ -11,16 +11,12 @@ export interface UserAuth {
   pwd: string;
 }
 
-export interface AuthResults {
+export interface AuthKeys {
   username: string;
-  pwd: string;
 }
 
-export interface RegisterResults {
-  displayUsername: string;
-  fullName?: string;
+export interface RegisterKeys {
   secondaryUsername: string;
-  pwd: string;
 }
 
 // types
