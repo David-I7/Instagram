@@ -9,6 +9,6 @@ const errorHandler = (err, req, res, next) => {
             .json({ status: "error", message: "A database error has occurred" });
     if (err instanceof Error)
         return res.status(500).json((0, jsonResponse_1.jsonError)(err));
-    return;
+    return res.status(500).json(err);
 };
 exports.default = errorHandler;

@@ -14,7 +14,7 @@ const errorHandler = (
       .json({ status: "error", message: "A database error has occurred" });
   if (err instanceof Error) return res.status(500).json(jsonError(err));
 
-  return;
+  return res.status(500).json(err);
 };
 
 export default errorHandler;

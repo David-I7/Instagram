@@ -1,16 +1,17 @@
 export type JSONError = {
   status: "error";
   message: string;
-  data?: { [key: string]: any };
-  code?: number;
+  data?: { [key: string]: any; code?: number };
 };
 
 export const jsonError = <Exception extends Error>(
-  error: Exception
+  error: Exception,
+  data?: { [key: string]: any; code?: number }
 ): JSONError => {
   return {
     status: "error",
     message: error.message,
+    data,
   };
 };
 

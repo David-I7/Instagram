@@ -3,8 +3,10 @@ import { validateRegisterInput } from "../validation/authentication/validateCred
 import registerUser from "../services/auth/registerUser";
 import { JSONFail, jsonSuccess, jsonFail } from "../config/jsonResponse";
 import { duplicateUsername } from "../validation/authentication/authDuplication";
-import { REGISTERPROPS } from "../config/requiredRequestProps";
 import { Request, Response, NextFunction } from "express";
+import createJWT from "../services/auth/createJWT";
+import { newUserRoles } from "../config/roles";
+import { authCookieOptions } from "../config/cookieOptions";
 
 const registerController = async (
   req: Request,
@@ -21,16 +23,9 @@ const registerController = async (
 
   //check for all required props
   if (!displayUsername || !secondaryUsername || !birthday || !pwd) {
-    let missingProps: string[] = [];
-    const currentProps = Object.getOwnPropertyNames(req.body);
-
-    REGISTERPROPS.forEach((prop: string) =>
-      currentProps.includes(prop) ? null : missingProps.push(prop)
-    );
-
     return res.status(400).json(
       jsonFail({
-        message: `Missing the following required form inputs: ${missingProps.join()}`,
+        message: `displayUsername, secondaryUsername, pwd and birthday are required.`,
       })
     );
   }
@@ -83,6 +78,7 @@ const registerController = async (
       pwd,
       vResults as RegisterKeys,
       birthday,
+      newUserRoles,
       fullName
     );
   } catch (err: unknown) {
@@ -90,7 +86,13 @@ const registerController = async (
     return;
   }
 
-  return res.status(201).json(jsonSuccess({ user: newUser }));
+  //issue access and refresh tokens
+
+  const { refreshToken, accessToken } = await createJWT(newUser, newUserRoles);
+
+  res.cookie("JWT", refreshToken, authCookieOptions);
+
+  return res.status(201).json(jsonSuccess({ accessToken }));
 };
 
 export default registerController;

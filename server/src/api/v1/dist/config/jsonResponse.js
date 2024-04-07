@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.jsonFail = exports.jsonSuccess = exports.jsonError = void 0;
-const jsonError = (error) => {
+const jsonError = (error, data) => {
     return {
         status: "error",
         message: error.message,
+        data,
     };
 };
 exports.jsonError = jsonError;

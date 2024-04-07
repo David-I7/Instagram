@@ -10,7 +10,6 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -21,9 +20,17 @@ const userSchema = new Schema({
   },
   birthday: {
     type: Date,
-    required: true,
   },
   refreshToken: {
+    type: String,
+  },
+  roles: {
+    type: Object,
+  },
+  fullName: {
+    type: String,
+  },
+  picture: {
     type: String,
   },
 });

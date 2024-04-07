@@ -30,7 +30,7 @@ exports.validateDisplayUsername = validateDisplayUsername;
 const validateUsername = (username) => {
     let validUsername = "";
     if (validateDisplayUsername(username)) {
-        validUsername = "displayUsername";
+        validUsername = "username";
     }
     else if (validateEmail(username)) {
         validUsername = "email";
@@ -72,9 +72,12 @@ exports.validateAuthInput = validateAuthInput;
 const validateRegisterInput = (displayUsername, secondaryUsername, pwd, fullName) => {
     let results = {
         secondaryUsername: "",
+        displayUsername: "",
     };
     if (!validateDisplayUsername(displayUsername))
         return (0, jsonResponse_1.jsonFail)({ username: "Invalid Username" });
+    else
+        results.displayUsername = "username";
     if (validateEmail(secondaryUsername))
         results.secondaryUsername = "email";
     else if (validatePhoneNumber(secondaryUsername)) {

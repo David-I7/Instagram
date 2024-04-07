@@ -8,6 +8,7 @@ const registerUser = async (
   pwd: string,
   registerKeys: RegisterKeys,
   birthday: Date,
+  roles: Record<string, number>,
   fullname?: string
 ): ReturnType<typeof createUser> => {
   const hashedPwd = await bcrypt.hash(pwd, 10);
@@ -18,6 +19,7 @@ const registerUser = async (
     secondaryUsername,
     hashedPwd,
     birthday,
+    roles,
     fullname
   );
 

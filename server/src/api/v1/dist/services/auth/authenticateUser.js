@@ -10,7 +10,7 @@ const authenticateUser = async (username, pwd, authKeys) => {
     const matchingUser = await (0, dbQueries_1.getUser)(authKeys.username, username);
     if (!matchingUser) {
         return (0, jsonResponse_1.jsonFail)({
-            username: `Username: ${username}, is not associated with an account`,
+            username: `An account with the username ${username} does not exist`,
         });
     }
     if (!(await bcrypt_1.default.compare(pwd, matchingUser.password))) {

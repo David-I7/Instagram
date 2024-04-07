@@ -31,7 +31,7 @@ const validateDisplayUsername = (displayUsername: string): boolean => {
 const validateUsername = (username: string): JSONFail | string => {
   let validUsername: string = "";
   if (validateDisplayUsername(username)) {
-    validUsername = "displayUsername";
+    validUsername = "username";
   } else if (validateEmail(username)) {
     validUsername = "email";
   } else if (validatePhoneNumber(username)) {
