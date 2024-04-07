@@ -5,6 +5,7 @@ const useValidatePwd = (pwdInput: string) => {
   const [validPwd, setValidPwd] = useState<boolean | undefined>(undefined);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
+      if (!pwdInput.length) return;
       setValidPwd(validatePwd(pwdInput));
     }, 500);
 

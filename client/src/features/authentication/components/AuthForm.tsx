@@ -1,7 +1,7 @@
 import DynamicPasswordInput from "./DynamicPasswordInput";
 import DynamicSubmitButton from "./DynamicSubmitButton";
 import DynamicTextInput from "./DynamicTextInput";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState, useCallback } from "react";
 import { getTailwindStyles } from "../helpers/Styles";
 import useValidatePwd from "../hooks/useValidatePwd";
 import useValidateDisplayUsername from "../hooks/useValidateDisplayUsername";
@@ -21,9 +21,10 @@ const AuthForm = () => {
   const [secondaryUsername, setSecondaryUsername] = useState<string>("");
   const { validSecondaryUsername, secondaryUsernameType } =
     useValidateSecondaryUsername(secondaryUsername);
-  const handleBlur = () => {
+  const handleBlur = useCallback(() => {
+    if (!fullName) return;
     setValidFullname(validateFullName(fullName));
-  };
+  }, [fullName]);
   const navigate = useNavigate();
   const location = useLocation();
 

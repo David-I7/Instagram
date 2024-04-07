@@ -2,6 +2,7 @@ import Footer from "../../../components/common/Footer";
 import "../assets/Login.css";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import getGoogleUrl from "../helpers/getGoogleUrl";
 
 const Login = () => {
   return (
@@ -14,7 +15,10 @@ const Login = () => {
           <div className="or-transition flex w-full mb-6">
             <span className="text-slate-500 font-bold text-xs">OR</span>
           </div>
-          <a href="/" className="flex justify-center gap-2 text-sm mb-6">
+          <a
+            href={getGoogleUrl()}
+            className="flex justify-center gap-2 text-sm mb-6"
+          >
             <svg
               width="24px"
               height="24px"

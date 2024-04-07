@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import { validateDisplayUsername } from "../../../validation/authValidation";
+import { validateUsername } from "../../../services/authApi";
 
 const useValidateDisplayUsername = (displayUsername: string) => {
   const [validUsername, setValidUsername] = useState<boolean | undefined>(
     undefined
   );
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setValidUsername(validateDisplayUsername(displayUsername));
+    const timeoutId = setTimeout(async () => {
+      if (!displayUsername) return;
+
+      const data = await validateUsername("username", displayUsername);
+
+      setValidUsername(data.isValid);
     }, 500);
 
     return () => {
