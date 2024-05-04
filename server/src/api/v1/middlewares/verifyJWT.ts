@@ -20,13 +20,16 @@ const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
   jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET!, (err, decoded) => {
     if (err) return res.status(403).json(jsonError(err));
 
-    req.body.username = (decoded as JwtPayload).userInfo.usernames;
-    req.body.roles = (decoded as JwtPayload).userInfo.roles;
+    req.user = {
+      username: (decoded as JwtPayload).userInfo.username,
+      roles: (decoded as JwtPayload).userInfo.roles,
+    };
 
     return;
   });
   next();
-  return; // need to return even if you call next !
+  return;
+  // need to return even if you call next !
 };
 
 export default verifyJWT;

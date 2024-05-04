@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from "express";
+import { reqUser } from "../interfaces/User";
 import { jsonFail } from "../config/jsonResponse";
 
 const verifyRoles = (...authorizedRoles: number[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const roles: number[] | undefined = req.body.roles;
+    const roles = (req.user as reqUser).roles;
 
     if (!roles)
       return res

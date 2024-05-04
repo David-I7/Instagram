@@ -20,4 +20,9 @@ export interface RegisterKeys {
   displayUsername: string;
 }
 
+export interface reqUser extends Express.User {
+  id: string;
+  roles: number[];
+}
+
 // types

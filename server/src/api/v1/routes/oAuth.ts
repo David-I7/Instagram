@@ -15,7 +15,7 @@ const oAuthRouter = Router();
 //   passport.authenticate("google", { scope: ["profile", "email"] });
 // });
 
-// oAuthRouter.get("/google/callback", (req: Request, res: Response) => {
+// oAuthRouter.get("/facebook/callback", (req: Request, res: Response) => {
 //   console.log(req.method, req.url);
 //   passport.authenticate("google", {
 //     failureRedirect: "/google/fail",
@@ -80,3 +80,5 @@ oAuthRouter.get("/google/callback", async (req: Request, res: Response) => {
 });
 
 export default oAuthRouter;
+
+// IMPLEMENT LOGOUT FEATURE INSIDE REDIRECT VIEW (AKA HOME)

@@ -1,9 +1,5 @@
 import Jwt from "jsonwebtoken";
-import { dotenvFilepath } from "../../config/pathConstants";
-import dotenv from "dotenv";
 import { MongoUser } from "../../services/auth/dbQueries";
-
-dotenv.config({ path: dotenvFilepath });
 
 const createJWT = async (
   mongoUser: MongoUser,

@@ -3,12 +3,6 @@ import {
   VerifyCallback,
 } from "passport-google-oauth2";
 import passport, { Profile } from "passport";
-import dotenv from "dotenv";
-import { dotenvFilepath } from "./pathConstants";
-
-dotenv.config({
-  path: dotenvFilepath,
-});
 
 passport.use(
   new GoogleStrategy(
@@ -29,13 +23,13 @@ passport.use(
   )
 );
 
-passport.serializeUser(
-  (user: Express.User, done: (err: any, id?: unknown) => void) => {
-    done(null, user);
-  }
-);
-passport.deserializeUser(
-  (user: Express.User, done: (err: any, id?: unknown) => void) => {
-    done(null, user);
-  }
-);
+// passport.serializeUser(
+//   (user: Express.User, done: (err: any, id?: unknown) => void) => {
+//     done(null, user);
+//   }
+// );
+// passport.deserializeUser(
+//   (user: Express.User, done: (err: any, id?: unknown) => void) => {
+//     done(null, user);
+//   }
+// );
